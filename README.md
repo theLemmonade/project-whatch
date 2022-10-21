@@ -17,4 +17,5 @@ Wondering what movie to watch tonight? Take a seat, let us help you make a pick!
 
 
 ## Acknowledgments
-
+  * https://developers.themoviedb.org/3/getting-started/introduction
+  *"This product uses the TMDB API but is not endorsed or certified by TMDB."
