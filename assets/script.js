@@ -26,8 +26,8 @@ function showQuiz0() {//what genre do you like?
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
-  document.getElementById("romance").addEventListener("click", genre = "romance", console.log(genre), showQuiz1);
-  document.getElementById("horror").addEventListener("click", genre = "horror", console.log(genre), showQuiz1);
+  document.getElementById("drama").addEventListener("click", genre = "Drama", console.log(genre), showQuiz1);
+  document.getElementById("mystery").addEventListener("click", genre = "Mystery", console.log(genre), showQuiz1);
   document.getElementById("comedy").addEventListener("click", genre = "comedy", console.log(genre), showQuiz1);
   document.getElementById("action").addEventListener("click", genre = "action", console.log(genre), showQuiz1);
   document.getElementById("international").addEventListener("click", genre = "international", console.log(genre), showQuiz1);
@@ -44,29 +44,32 @@ function showQuiz1() {//movie or series?
 }
 
 function showQuiz2() {//what platforms do you have?
-  document.getElementById("opening").setAttribute("style", "display:none");
-  document.getElementById("quiz0").setAttribute("style", "display:none");
-  document.getElementById("quiz1").setAttribute("style", "display:none");
-  document.getElementById("quiz2").setAttribute("style", "display:block");
-  document.getElementById("results").setAttribute("style", "display:none");
-  dpc
-  
+  opening.setAttribute("style", "display:none");
+  quiz0.setAttribute("style", "display:none");
+  quiz1.setAttribute("style", "display:none");
+  quiz2.setAttribute("style", "display:block");
+  results.setAttribute("style", "display:none");
+  document.getElementById("netflix").addEventListener("click", streams.netflix = true);
+  document.getElementById("amazon").addEventListener("click", streams.amazon = true);
+  document.getElementById("hulu").addEventListener("click", streams.hulu = true);
+  function submitQuiz2() {
+    if (streams.netflix && streams.amazon && streams.hulu == false) {
+      document.getElementById("warning").textContent("Please select atleast one streaming platform.")
+    } else {
+      showResults
+    }
+  }
+  document.getElementById("submitQuiz2").addEventListener("click", submitQuiz2);
 }
 
 function showResults() {
-    opening.setAttribute("style", "display:none");
-    quiz.setAttribute("style", "display:none");
-    results.setAttribute("style", "display:block");
+  opening.setAttribute("style", "display:none");
+  quiz0.setAttribute("style", "display:none");
+  quiz1.setAttribute("style", "display:none");
+  quiz2.setAttribute("style", "display:none");
+  results.setAttribute("style", "display:block")
 }
 
-document.getElementById("begin").addEventListener("click", showQuiz0());
-
-
-//genre
-//movie or series
-//what streaming platforms do you have?
-
-
-
+document.getElementById("begin").addEventListener("click", showQuiz0);
 showOpening();
 
