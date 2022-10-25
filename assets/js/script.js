@@ -72,3 +72,56 @@ function showResults() {//quiz results
 
 document.getElementById("begin").addEventListener("click", showQuiz0);
 showOpening();
+
+
+
+
+
+
+// TMDb API stuff
+var APIKey = '490056a86245bab731a516b282429177';
+fetch('https://api.themoviedb.org/3/genre/tv/list?api_key=490056a86245bab731a516b282429177&language=en-US')
+.then(function (response) {
+    console.log("response", response);
+    return response.json()
+})
+.then(function (data) {
+    console.log("data", data);
+})
+fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=490056a86245bab731a516b282429177&language=en-US')
+.then(function (response) {
+    console.log("response", response);
+    return response.json()
+})
+.then(function (data) {
+    console.log("data", data);
+})
+
+var genreListMovies = ['Action', 'Comedy', 'Science Fiction', 'Drama', 'Mystery'];
+var movieGenresByCode = ['28', '35', '878', '18', '9648'];
+var genreListTV = ['Action & Adventure', 'Comedy', 'Sci-Fi & Fantasy', 'Drama', 'Mystery'];
+var tvGenresByCode = ['10759', '35', '10765', '18', '9648'];
+var noAdultContent = '&include_adult=false';
+var movieOrTV = ['movie', 'tv']
+
+// Search
+fetch('https://api.themoviedb.org/3/search/multi?api_key=' + APIKey + '&language=en-US&query=' + 'Horror' + '&page=1' + noAdultContent)
+.then(function (response) {
+    console.log("response", response);
+    return response.json()
+})
+.then(function (data) {
+    console.log("data", data);
+})
+
+// Generate Suggestions
+// Not sure if noAdultContent is working
+// Test with random variables
+fetch('https://api.themoviedb.org/3/discover/' + movieOrTV[1] + '?api_key=' + APIKey + '&with_genres=' + tvGenresByCode[2] + noAdultContent)
+.then(function (response) {
+    console.log("response", response);
+    return response.json()
+})
+.then(function (data) {
+    console.log("data", data);
+})
