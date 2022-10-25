@@ -49,8 +49,6 @@ function showQuiz2() {//what decade are you into rn?
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:block");
   results.setAttribute("style", "display:none");
-  
-
 }
 
 function showResults() {//quiz results
