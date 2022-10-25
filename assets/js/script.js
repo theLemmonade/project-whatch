@@ -3,14 +3,12 @@ const quiz0 = document.getElementById("quiz0")
 const quiz1 = document.getElementById("quiz1")
 const quiz2 = document.getElementById("quiz2")
 const results = document.getElementById("results")
+var poster = document.getElementById("poster")
 var genre = String
 var isMovie = Boolean
-var suggestion
-var streams = {
-    netflix : Boolean,
-    amazon : Boolean,
-    hulu : Boolean
-}
+var decade = Number
+
+//quiz user
 
 function showOpening() {//opening page with start button
   opening.setAttribute("style", "display:block");
@@ -26,12 +24,18 @@ function showQuiz0() {//what genre do you like?
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
-  document.getElementById("action").addEventListener("click", genre = "Action", console.log(genre), showQuiz1);
-  document.getElementById("comedy").addEventListener("click", genre = "Mystery", console.log(genre), showQuiz1);
-  document.getElementById("scifi").addEventListener("click", genre = "Science Fiction", console.log(genre), showQuiz1);
-  document.getElementById("drama").addEventListener("click", genre = "Drama", console.log(genre), showQuiz1);
-  document.getElementById("mystery").addEventListener("click", genre = "Mystery", console.log(genre), showQuiz1);
+  document.getElementById("action").addEventListener("click", answerQuiz0);
+  document.getElementById("comedy").addEventListener("click", answerQuiz0);
+  document.getElementById("scifi").addEventListener("click", answerQuiz0);
+  document.getElementById("drama").addEventListener("click", answerQuiz0);
+  document.getElementById("mystery").addEventListener("click", answerQuiz0);
 }
+
+function answerQuiz0() {//define genre
+  genre = this.getAttribute("id");
+  console.log("user selects genre " + genre);
+  showQuiz1();
+};
 
 function showQuiz1() {//movie or series?
   opening.setAttribute("style", "display:none");
@@ -39,9 +43,21 @@ function showQuiz1() {//movie or series?
   quiz1.setAttribute("style", "display:block");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
-  document.getElementById("movie").addEventListener("click", isMovie = true, console.log(isMovie), showQuiz2);
-  document.getElementById("series").addEventListener("click", isMovie = false, console.log(isMovie), showQuiz2);
+  document.getElementById("movie").addEventListener("click", answerQuiz1);
+  document.getElementById("series").addEventListener("click", answerQuiz1);
 }
+
+function answerQuiz1() {//define isMovie
+  var x = this.getAttribute("id")
+  if (x === "movie") {
+    isMovie = true;
+  } else {
+    isMovie = false;
+  };
+  console.log("user selected movie = " + isMovie);
+  showQuiz2();
+};
+
 
 function showQuiz2() {//what decade are you into rn?
   opening.setAttribute("style", "display:none");
@@ -49,21 +65,35 @@ function showQuiz2() {//what decade are you into rn?
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:block");
   results.setAttribute("style", "display:none");
+  document.getElementById("80").addEventListener("click", answerQuiz2);
+  document.getElementById("90").addEventListener("click", answerQuiz2);
+  document.getElementById("00").addEventListener("click", answerQuiz2);
+  document.getElementById("10").addEventListener("click", answerQuiz2);
+  document.getElementById("20").addEventListener("click", answerQuiz2);
 }
+
+function answerQuiz2() {//define genre
+  decade = this.getAttribute("id");
+  console.log("user selects decade " + decade);
+  showResults();
+};
 
 function showResults() {//quiz results
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
-  results.setAttribute("style", "display:block")
+  results.setAttribute("style", "display:block");
 }
 
 document.getElementById("begin").addEventListener("click", showQuiz0);
 showOpening();
 
-
-
+//this is for showing posters
+//this can go into a then fetch
+// var posterImg = document.createElement("img");
+// posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original/" + posterSrc)
+// poster.appendChild(posterImg)
 
 
 
