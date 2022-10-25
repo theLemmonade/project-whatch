@@ -26,11 +26,11 @@ function showQuiz0() {//what genre do you like?
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
+  document.getElementById("action").addEventListener("click", genre = "Action", console.log(genre), showQuiz1);
+  document.getElementById("comedy").addEventListener("click", genre = "Mystery", console.log(genre), showQuiz1);
+  document.getElementById("scifi").addEventListener("click", genre = "Science Fiction", console.log(genre), showQuiz1);
   document.getElementById("drama").addEventListener("click", genre = "Drama", console.log(genre), showQuiz1);
   document.getElementById("mystery").addEventListener("click", genre = "Mystery", console.log(genre), showQuiz1);
-  document.getElementById("comedy").addEventListener("click", genre = "comedy", console.log(genre), showQuiz1);
-  document.getElementById("action").addEventListener("click", genre = "action", console.log(genre), showQuiz1);
-  document.getElementById("international").addEventListener("click", genre = "international", console.log(genre), showQuiz1);
 }
 
 function showQuiz1() {//movie or series?
