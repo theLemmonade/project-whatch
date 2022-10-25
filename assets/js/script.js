@@ -68,76 +68,29 @@
 
 
 // TMDb API stuff
-var APIKey = '490056a86245bab731a516b282429177';
-
-// Testing
-// fetch('https://api.themoviedb.org/3/genre/tv/list?api_key=490056a86245bab731a516b282429177&language=en-US')
-// .then(function (response) {
-//     console.log("response", response);
-//     return response.json()
-// })
-// .then(function (data) {
-//     console.log("data", data);
-// })
-// fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=490056a86245bab731a516b282429177&language=en-US')
-// .then(function (response) {
-//     console.log("response", response);
-//     return response.json()
-// })
-// .then(function (data) {
-//     console.log("data", data);
-// })
 
 // Testing/Notes
-var genreListMovies = ['Action', 'Comedy', 'Science Fiction', 'Drama', 'Mystery'];
-var movieGenresByCode = ['28', '35', '878', '18', '9648'];
-var genreListTV = ['Action & Adventure', 'Comedy', 'Sci-Fi & Fantasy', 'Drama', 'Mystery'];
-var tvGenresByCode = ['10759', '35', '10765', '18', '9648'];
-var noAdultContent = '&include_adult=false';
-var movieOrTV = ['movie', 'tv'];
-var dateRange = ['1980-1989', '1990-1999', '2000-2009', '2010-2019', '2020-present'];
-var dateLowerBound = ['1980-01-01', '1990-01-01', '2000-01-01', '2010-01-01', '2020-01-01'];
-var dateUpperBound = ['1989-12-31', '1999-12-31', '2009-12-31', '2019-12-31', '2029-12-31'];
+// var genreListMovies = ['Action', 'Comedy', 'Science Fiction', 'Drama', 'Mystery'];
+// var movieGenresByCode = ['28', '35', '878', '18', '9648'];
+// var genreListTV = ['Action & Adventure', 'Comedy', 'Sci-Fi & Fantasy', 'Drama', 'Mystery'];
+// var tvGenresByCode = ['10759', '35', '10765', '18', '9648'];
+// var noAdultContent = '&include_adult=false';
+// var movieOrTV = ['movie', 'tv'];
+// var dateRange = ['1980-1989', '1990-1999', '2000-2009', '2010-2019', '2020-present'];
+// var dateLowerBound = ['1980-01-01', '1990-01-01', '2000-01-01', '2010-01-01', '2020-01-01'];
+// var dateUpperBound = ['1989-12-31', '1999-12-31', '2009-12-31', '2019-12-31', '2029-12-31'];
 
-// Testing Search - probobly not going to use it
-// fetch('https://api.themoviedb.org/3/search/multi?api_key=' + APIKey + '&language=en-US&query=' + 'Horror' + '&page=1' + noAdultContent)
-// .then(function (response) {
-//     console.log("response", response);
-//     return response.json()
-// })
-// .then(function (data) {
-//     console.log("data", data);
-// })
-
-// Testing
-// Generate Suggestions
-// Not sure if noAdultContent is working
-// Test with random variables
-// Date range not working
-fetch('https://api.themoviedb.org/3/discover/' + movieOrTV[0] + '?api_key=' + APIKey + '&release_date.gte=' + '1990-01-01' + '&release_date.lte=' + '1999-12-31' + '&with_genres=' + movieGenresByCode[2] + noAdultContent)
-.then(function (response) {
-    console.log("response", response);
-    return response.json()
-})
-.then(function (data) {
-    console.log("data", data);
-})
-
-// Note: get movie by decade
-
-
-
-// Actually useful stuff
+// Actual Stuff
 
 // Variables
-// Variables for selectors
+// Variables for Selectors
 var movieOrTVShow; //I know it's similar to movieOrTV; one of them is temporary, so bear with me
 var movieGenreCode;
 var tvGenreCode;
 var movieDecadeBounds;
 var tvDecadeBounds;
-// API Key
-
+// API Key and URL Variables
+var APIKey = '490056a86245bab731a516b282429177';
 var movieURL;
 var tvURL;
 
@@ -194,20 +147,15 @@ function movieDecadeSelector() {
 }
 function tvDecadeSelector() {
   if (/*user selects*/ '1980\'s') {
-    tvDecadeLowerBound = 'TBD' //Have to figure this part of the call out
-    tvDecadeUpperBound = 'TBD' //Have to figure this part of the call out
+    tvDecadeBounds = '&first_air_date.gte=1980-01-01&first_air_date.lte=1989-12-31'
   } else if (/*user selects*/ '1990\'s') {
-    tvDecadeLowerBound = 'TBD' //Have to figure this part of the call out
-    tvDecadeUpperBound = 'TBD' //Have to figure this part of the call out
+    tvDecadeBounds = '&first_air_date.gte=1990-01-01&first_air_date.lte=1999-12-31'
   } else if (/*user selects*/ '2000\'s') {
-    tvDecadeLowerBound = 'TBD' //Have to figure this part of the call out
-    tvDecadeUpperBound = 'TBD' //Have to figure this part of the call out
+    tvDecadeBounds = '&first_air_date.gte=2000-01-01&first_air_date.lte=2009-12-31'
   } else if (/*user selects*/ '2010\'s') {
-    tvDecadeLowerBound = 'TBD' //Have to figure this part of the call out
-    tvDecadeUpperBound = 'TBD' //Have to figure this part of the call out
+    tvDecadeBounds = '&first_air_date.gte=2010-01-01&first_air_date.lte=2019-12-31'
   } else if (/*user selects*/ '2020\'s') {
-    tvDecadeLowerBound = 'TBD' //Have to figure this part of the call out
-    tvDecadeUpperBound = 'TBD' //Have to figure this part of the call out
+    tvDecadeBounds = '&first_air_date.gte=2020-01-01&first_air_date.lte=2029-12-31'
   }
 }
 
@@ -216,5 +164,27 @@ function formMovieURL() {
   movieURL = 'https://api.themoviedb.org/3/discover/' + movieOrTVShow + '?api_key=' + APIKey + movieDecadeBounds + '&with_genres=' + movieGenreCode + noAdultContent
 }
 function formTVURL() {
-  tvURL = 'https://api.themoviedb.org/3/discover/' + movieOrTVShow + '?api_key=' + APIKey + tvDecadeLowerBound + tvDecadeUpperBound + '&with_genres=' + tvGenreCode
+  tvURL = 'https://api.themoviedb.org/3/discover/' + movieOrTVShow + '?api_key=' + APIKey + tvDecadeBounds + '&with_genres=' + tvGenreCode
+}
+
+// Fetch Request
+function fetchMovieResults() {
+  fetch(movieURL)
+    .then(function (response) {
+      console.log("response", response);
+      return response.json()
+    })
+    .then(function (data) {
+      console.log("data", data);
+    })
+}
+function fetchTVResults() {
+  fetch(tvURL)
+    .then(function (response) {
+      console.log("response", response);
+      return response.json()
+    })
+    .then(function (data) {
+      console.log("data", data);
+    })
 }
