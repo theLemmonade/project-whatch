@@ -3,6 +3,7 @@ const quiz0 = document.getElementById("quiz0")
 const quiz1 = document.getElementById("quiz1")
 const quiz2 = document.getElementById("quiz2")
 const results = document.getElementById("results")
+var poster = document.getElementById("poster")
 var genre = String
 var isMovie = Boolean
 var decade = Number
@@ -87,6 +88,14 @@ function showResults() {//quiz results
 
 document.getElementById("begin").addEventListener("click", showQuiz0);
 showOpening();
+
+//this is for showing posters
+//this can go into a then fetch
+// var posterImg = document.createElement("img");
+// posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original/" + posterSrc)
+// poster.appendChild(posterImg)
+
+
 
 // TMDb API stuff
 // Important
