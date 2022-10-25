@@ -93,7 +93,10 @@ var movieGenresByCode = ['28', '35', '878', '18', '9648'];
 var genreListTV = ['Action & Adventure', 'Comedy', 'Sci-Fi & Fantasy', 'Drama', 'Mystery'];
 var tvGenresByCode = ['10759', '35', '10765', '18', '9648'];
 var noAdultContent = '&include_adult=false';
-var movieOrTV = ['movie', 'tv']
+var movieOrTV = ['movie', 'tv'];
+var dateRange = ['1980-1989', '1990-1999', '2000-2009', '2010-2019', '2020-present'];
+var dateLowerBound = ['1980-01-01', '1990-01-01', '2000-01-01', '2010-01-01', '2020-01-01'];
+var dateUpperBound = ['1989-12-31', '1999-12-31', '2009-12-31', '2019-12-31', '2029-12-31'];
 
 // Search
 fetch('https://api.themoviedb.org/3/search/multi?api_key=' + APIKey + '&language=en-US&query=' + 'Horror' + '&page=1' + noAdultContent)
@@ -108,7 +111,8 @@ fetch('https://api.themoviedb.org/3/search/multi?api_key=' + APIKey + '&language
 // Generate Suggestions
 // Not sure if noAdultContent is working
 // Test with random variables
-fetch('https://api.themoviedb.org/3/discover/' + movieOrTV[1] + '?api_key=' + APIKey + '&with_genres=' + tvGenresByCode[2] + noAdultContent)
+// Date range not working
+fetch('https://api.themoviedb.org/3/discover/' + movieOrTV[0] + '?api_key=' + APIKey + '&release_date.gte=' + dateLowerBound[4] + '&release_date.lte=' + dateUpperBound[4] + '&with_genres=' + movieGenresByCode[2] + noAdultContent)
 .then(function (response) {
     console.log("response", response);
     return response.json()
@@ -116,3 +120,8 @@ fetch('https://api.themoviedb.org/3/discover/' + movieOrTV[1] + '?api_key=' + AP
 .then(function (data) {
     console.log("data", data);
 })
+
+
+
+
+// Note: get movie by decade
