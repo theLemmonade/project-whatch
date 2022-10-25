@@ -12,7 +12,7 @@ var streams = {
     hulu : Boolean
 }
 
-function showOpening() {//opening page with start button
+function showOpening() {
   opening.setAttribute("style", "display:block");
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:none");
@@ -43,7 +43,7 @@ function showQuiz1() {//movie or series?
   document.getElementById("series").addEventListener("click", isMovie = false, console.log(isMovie), showQuiz2);
 }
 
-function showQuiz2() {//what platforms do you have? (with submit button)
+function showQuiz2() {//what platforms do you have?
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:none");
@@ -62,7 +62,7 @@ function showQuiz2() {//what platforms do you have? (with submit button)
   document.getElementById("submitQuiz2").addEventListener("click", submitQuiz2);
 }
 
-function showResults() {//quiz results
+function showResults() {
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:none");
