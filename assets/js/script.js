@@ -5,12 +5,9 @@ const quiz2 = document.getElementById("quiz2")
 const results = document.getElementById("results")
 var genre = String
 var isMovie = Boolean
-var suggestion
-var streams = {
-    netflix : Boolean,
-    amazon : Boolean,
-    hulu : Boolean
-}
+var decade = Number
+
+//quiz user
 
 function showOpening() {//opening page with start button
   opening.setAttribute("style", "display:block");
@@ -49,8 +46,11 @@ function showQuiz2() {//what decade are you into rn?
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:block");
   results.setAttribute("style", "display:none");
-  
-
+  document.getElementById("80").addEventListener("click", decade = 80, console.log(decade), showResults);
+  document.getElementById("90").addEventListener("click", decade = 90, console.log(decade), showResults);
+  document.getElementById("00").addEventListener("click", decade = 00, console.log(decade), showResults);
+  document.getElementById("10").addEventListener("click", decade = 10, console.log(decade), showResults);
+  document.getElementById("20").addEventListener("click", decade = 20, console.log(decade), showResults);
 }
 
 function showResults() {//quiz results
@@ -58,16 +58,13 @@ function showResults() {//quiz results
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
-  results.setAttribute("style", "display:block")
+  results.setAttribute("style", "display:block");
 }
 
 document.getElementById("begin").addEventListener("click", showQuiz0);
 showOpening();
 
-
-
-
-
+//build API URL based on user results
 
 // TMDb API stuff
 var APIKey = '490056a86245bab731a516b282429177';
@@ -116,3 +113,12 @@ fetch('https://api.themoviedb.org/3/discover/' + movieOrTV[1] + '?api_key=' + AP
 .then(function (data) {
     console.log("data", data);
 })
+
+
+
+
+
+
+//get youtube trailer
+
+//display poster, descriptors and trailer to results page
