@@ -44,14 +44,6 @@ function answerQuiz0() {//define isMovie
   showQuiz1();
 };
 
-// Movie or TV Show
-function movieOrTVSelector() {
-  if (/*user selects*/ 'Movie') {
-    movieOrTVShow = 'movie'
-  } else if (/*user selects*/ 'TV Series') {
-    movieOrTVShow = 'tv'
-  }
-
 function showQuiz1() {//what genre do you like?
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
@@ -146,6 +138,7 @@ function showResults() {//quiz results
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:block");
+  drawPoster
 }
 
 document.getElementById("begin").addEventListener("click", showQuiz0);
