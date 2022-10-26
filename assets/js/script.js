@@ -18,36 +18,17 @@ function showOpening() {//opening page with start button
   results.setAttribute("style", "display:none");
 }
 
-function showQuiz0() {//what genre do you like?
+function showQuiz0() {//movie or series?
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:block");
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
-  document.getElementById("action").addEventListener("click", answerQuiz0);
-  document.getElementById("comedy").addEventListener("click", answerQuiz0);
-  document.getElementById("scifi").addEventListener("click", answerQuiz0);
-  document.getElementById("drama").addEventListener("click", answerQuiz0);
-  document.getElementById("mystery").addEventListener("click", answerQuiz0);
+  document.getElementById("movie").addEventListener("click", answerQuiz0);
+  document.getElementById("series").addEventListener("click", answerQuiz0);
 }
 
-function answerQuiz0() {//define genre
-  genre = this.getAttribute("id");
-  console.log("user selects genre " + genre);
-  showQuiz1();
-};
-
-function showQuiz1() {//movie or series?
-  opening.setAttribute("style", "display:none");
-  quiz0.setAttribute("style", "display:none");
-  quiz1.setAttribute("style", "display:block");
-  quiz2.setAttribute("style", "display:none");
-  results.setAttribute("style", "display:none");
-  document.getElementById("movie").addEventListener("click", answerQuiz1);
-  document.getElementById("series").addEventListener("click", answerQuiz1);
-}
-
-function answerQuiz1() {//define isMovie
+function answerQuiz0() {//define isMovie
   var x = this.getAttribute("id")
   if (x === "movie") {
     isMovie = true;
@@ -55,9 +36,65 @@ function answerQuiz1() {//define isMovie
     isMovie = false;
   };
   console.log("user selected movie = " + isMovie);
-  showQuiz2();
+  if (isMovie = true) {
+    movieOrTVShow = "movie"
+  } else {
+    movieOrTVShow = "tv"
+  }
+  showQuiz1();
 };
 
+// Movie or TV Show
+function movieOrTVSelector() {
+  if (/*user selects*/ 'Movie') {
+    movieOrTVShow = 'movie'
+  } else if (/*user selects*/ 'TV Series') {
+    movieOrTVShow = 'tv'
+  }
+
+function showQuiz1() {//what genre do you like?
+  opening.setAttribute("style", "display:none");
+  quiz0.setAttribute("style", "display:none");
+  quiz1.setAttribute("style", "display:block");
+  quiz2.setAttribute("style", "display:none");
+  results.setAttribute("style", "display:none");
+  document.getElementById("action").addEventListener("click", answerQuiz1);
+  document.getElementById("comedy").addEventListener("click", answerQuiz1);
+  document.getElementById("scifi").addEventListener("click", answerQuiz1);
+  document.getElementById("drama").addEventListener("click", answerQuiz1);
+  document.getElementById("mystery").addEventListener("click", answerQuiz1);
+}
+
+function answerQuiz1() {//define genre, set movieGenreCode or tvGenreCode
+  genre = this.getAttribute("id");
+  console.log("user selects genre " + genre);
+  if (isMovie = true) {
+    if (genre === 'action') {
+    movieGenreCode = '28'
+  } else if (genre === 'comedy') {
+    movieGenreCode = '35'
+  } else if (genre === 'scifi') {
+    movieGenreCode = '878'
+  } else if (genre === 'drama') {
+    movieGenreCode = '18'
+  } else if (genre === 'mystery') {
+    movieGenreCode = '9648'
+  }
+} else if (isMovie = false) {
+  if (genre === 'action') {
+    tvGenreCode = '10759'
+  } else if (genre === 'comedy') {
+    tvGenreCode = '35'
+  } else if (genre === 'scifi') {
+    tvGenreCode = '10765'
+  } else if (genre === 'drama') {
+    tvGenreCode = '18'
+  } else if (genre === 'mystery') {
+    tvGenreCode = '9648'
+  }
+}
+showQuiz2();
+};
 
 function showQuiz2() {//what decade are you into rn?
   opening.setAttribute("style", "display:none");
@@ -75,7 +112,32 @@ function showQuiz2() {//what decade are you into rn?
 function answerQuiz2() {//define genre
   decade = this.getAttribute("id");
   console.log("user selects decade " + decade);
-  showResults();
+  if (isMovie = true) {
+    if (decade === '80') {
+    movieDecadeBounds = '&release_date.gte=1980-01-01&release_date.lte=1989-12-31'
+  } else if (decade === '90') {
+    movieDecadeBounds = '&release_date.gte=1990-01-01&release_date.lte=1999-12-31'
+  } else if (decade === '00') {
+    movieDecadeBounds = '&release_date.gte=2000-01-01&release_date.lte=2009-12-31'
+  } else if (decade === '10') {
+    movieDecadeBounds = '&release_date.gte=2010-01-01&release_date.lte=2019-12-31'
+  } else if (decade === '20') {
+    movieDecadeBounds = '&release_date.gte=2020-01-01&release_date.lte=2029-12-31'
+  }
+} else if (isMovie = false) {
+  if (decade === '80') {
+    tvDecadeBounds = '&first_air_date.gte=1980-01-01&first_air_date.lte=1989-12-31'
+  } else if (decade === '90') {
+    tvDecadeBounds = '&first_air_date.gte=1990-01-01&first_air_date.lte=1999-12-31'
+  } else if (decade === '00') {
+    tvDecadeBounds = '&first_air_date.gte=2000-01-01&first_air_date.lte=2009-12-31'
+  } else if (decade === '10') {
+    tvDecadeBounds = '&first_air_date.gte=2010-01-01&first_air_date.lte=2019-12-31'
+  } else if (decade === '20') {
+    tvDecadeBounds = '&first_air_date.gte=2020-01-01&first_air_date.lte=2029-12-31'
+  }
+}
+showResults();
 };
 
 function showResults() {//quiz results
@@ -126,71 +188,6 @@ var tvDecadeBounds;
 var APIKey = '490056a86245bab731a516b282429177';
 var movieURL;
 var tvURL;
-
-// Movie or TV Show
-function movieOrTVSelector() {
-  if (/*user selects*/ 'Movie') {
-    movieOrTVShow = 'movie'
-  } else if (/*user selects*/ 'TV Series') {
-    movieOrTVShow = 'tv'
-  }
-}
-
-// Genre
-function movieGenreSelector() {
-  if (/*user selects*/ 'Action') {
-    movieGenreCode = '28'
-  } else if (/*user selects*/ 'Comedy') {
-    movieGenreCode = '35'
-  } else if (/*user selects*/ 'Science Fiction') {
-    movieGenreCode = '878'
-  } else if (/*user selects*/ 'Drama') {
-    movieGenreCode = '18'
-  } else if (/*user selects*/ 'Mystery') {
-    movieGenreCode = '9648'
-  }
-}
-function tvGenreSelector() {
-  if (/*user selects*/ 'Action & Adventure') {
-    tvGenreCode = '10759'
-  } else if (/*user selects*/ 'Comedy') {
-    tvGenreCode = '35'
-  } else if (/*user selects*/ 'Sci-Fi & Fantasy') {
-    tvGenreCode = '10765'
-  } else if (/*user selects*/ 'Drama') {
-    tvGenreCode = '18'
-  } else if (/*user selects*/ 'Mystery') {
-    tvGenreCode = '9648'
-  }
-}
-
-// Decade
-function movieDecadeSelector() {
-  if (/*user selects*/ '1980\'s') {
-    movieDecadeBounds = '&release_date.gte=1980-01-01&release_date.lte=1989-12-31'
-  } else if (/*user selects*/ '1990\'s') {
-    movieDecadeBounds = '&release_date.gte=1990-01-01&release_date.lte=1999-12-31'
-  } else if (/*user selects*/ '2000\'s') {
-    movieDecadeBounds = '&release_date.gte=2000-01-01&release_date.lte=2009-12-31'
-  } else if (/*user selects*/ '2010\'s') {
-    movieDecadeBounds = '&release_date.gte=2010-01-01&release_date.lte=2019-12-31'
-  } else if (/*user selects*/ '2020\'s') {
-    movieDecadeBounds = '&release_date.gte=2020-01-01&release_date.lte=2029-12-31'
-  }
-}
-function tvDecadeSelector() {
-  if (/*user selects*/ '1980\'s') {
-    tvDecadeBounds = '&first_air_date.gte=1980-01-01&first_air_date.lte=1989-12-31'
-  } else if (/*user selects*/ '1990\'s') {
-    tvDecadeBounds = '&first_air_date.gte=1990-01-01&first_air_date.lte=1999-12-31'
-  } else if (/*user selects*/ '2000\'s') {
-    tvDecadeBounds = '&first_air_date.gte=2000-01-01&first_air_date.lte=2009-12-31'
-  } else if (/*user selects*/ '2010\'s') {
-    tvDecadeBounds = '&first_air_date.gte=2010-01-01&first_air_date.lte=2019-12-31'
-  } else if (/*user selects*/ '2020\'s') {
-    tvDecadeBounds = '&first_air_date.gte=2020-01-01&first_air_date.lte=2029-12-31'
-  }
-}
 
 // Form the URL
 function formMovieURL() {
