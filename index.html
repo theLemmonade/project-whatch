@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <title>Whatch</title>
     
+
 </head>
 <body>
-    <!-- holds everything within the quiz, can hide elements as needed. -->
     <div class="wrapper">
         <section class="py-5 text-center container" id="opening">
             <div class="row py-lg-5">
@@ -73,18 +74,18 @@
           </div>
         
           </div>
-        <div id="quiz0">
+          <div id="quiz0">
+            <h1>pick type</h1>
+            <button id="movie">Movies</button>
+            <button id="series">Series</button>
+        </div>
+          <div id="quiz1">
             <h1>pick genre</h1>
             <button id="action">Action & Adventure</button>
             <button id="comedy">Comedy</button>
             <button id="scifi">Science Fiction</button>
             <button id="drama">Drama</button>
             <button id="mystery">Mystery</button>
-        </div>
-        <div id="quiz1">
-            <h1>pick type</h1>
-            <button id="movie">Movies</button>
-            <button id="series">Series</button>
         </div>
         <div id="quiz2">
             <h1>pick decade</h1>
@@ -94,7 +95,6 @@
             <button id="10">2010's</button>
             <button id="20">Today</button>
         </div>
-
         <div id = "results">
             <h1 class="movieTitle">Movie Title</h1>
             <img id="poster"></img>
