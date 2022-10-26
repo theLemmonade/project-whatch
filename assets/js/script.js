@@ -123,6 +123,11 @@ var tvDecadeBounds;
 var APIKey = '490056a86245bab731a516b282429177';
 var movieURL;
 var tvURL;
+// Results Variables
+var nameData;
+var descriptionData;
+var posterData;
+
 
 // Movie or TV Show
 function movieOrTVSelector() {
@@ -206,6 +211,14 @@ function fetchMovieResults() {
     })
     .then(function (data) {
       console.log("data", data);
+      for (let i = 0; i < data.length; i++) {
+        nameData = data.results[i].original_name
+        descriptionData = data.results[i].overview
+        posterData = data.results[i].poster_path
+      }
+      console.log(nameData);
+      console.log(descriptionData);
+      console.log(posterData);
     })
 }
 function fetchTVResults() {
@@ -216,5 +229,22 @@ function fetchTVResults() {
     })
     .then(function (data) {
       console.log("data", data);
+      for (var i = 0; i < 5; i++) {
+        nameData = data.results[i].name
+        descriptionData = data.results[i].overview
+        posterData = data.results[i].poster_path
+        console.log(nameData);
+        console.log(descriptionData);
+        console.log(posterData);
+        console.log('test')
+      }
+      console.log(nameData + ' outside');
+      console.log(descriptionData + ' outside');
+      console.log(posterData + ' outside');
+      console.log('test outside')
     })
 }
+
+// Test Run
+tvURL = 'https://api.themoviedb.org/3/discover/' + 'tv' + '?api_key=' + APIKey + '&first_air_date.gte=1990-01-01&first_air_date.lte=1999-12-31' + '&with_genres=' + '9648'
+fetchTVResults();
