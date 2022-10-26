@@ -1,9 +1,26 @@
+// Constants
+// Doc Selectors
 const opening = document.getElementById("opening")
 const quiz0 = document.getElementById("quiz0")
 const quiz1 = document.getElementById("quiz1")
 const quiz2 = document.getElementById("quiz2")
 const results = document.getElementById("results")
-var poster = document.getElementById("poster")
+const poster = document.getElementById("poster")
+// Variables
+// Variables for Selectors
+var movieOrTVShow; //I know it's similar to movieOrTV; one of them is temporary, so bear with me
+var movieGenreCode;
+var tvGenreCode;
+var movieDecadeBounds;
+var tvDecadeBounds;
+// API Key and URL Variables
+var APIKey = '490056a86245bab731a516b282429177';
+var movieURL;
+var tvURL;
+// Results Variables
+var nameData;
+var descriptionData;
+var posterSrc;
 var genre = String
 var isMovie = Boolean
 var decade = Number
@@ -132,28 +149,25 @@ function answerQuiz2() {//define genre
 showResults();
 };
 
+function drawPoster(){
+  var posterImg = document.createElement("img");
+  posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
+  console.log(posterImg);
+  poster.appendChild(posterImg)
+  }
+  
+
 function showResults() {//quiz results
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:block");
-  drawPoster
+  drawPoster();
 }
 
 document.getElementById("begin").addEventListener("click", showQuiz0);
 showOpening();
-
-//this is for showing posters
-//this can go into a then fetch
-// we need info for poster soource from tmdb api, ex. aVLV38txajXhEy2qNEClPIsDbAH.jpg
-function drawPoster(){
-var posterSrc = "" //api go here
-var posterImg = document.createElement("img");
-posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc)
-poster.appendChild(posterImg)
-}
-
 
 // TMDb API stuff
 
