@@ -13,6 +13,7 @@ var movieGenreCode;
 var tvGenreCode;
 var movieDecadeBounds;
 var tvDecadeBounds;
+var noAdultContent = '&include_adult=false';
 // API Key and URL Variables
 var APIKey = '490056a86245bab731a516b282429177';
 var movieURL;
@@ -53,11 +54,12 @@ function answerQuiz0() {//define isMovie
     isMovie = false;
   };
   console.log("user selected movie = " + isMovie);
-  if (isMovie = true) {
+  if (isMovie === true) {
     movieOrTVShow = "movie"
   } else {
     movieOrTVShow = "tv"
   }
+  console.log(movieOrTVShow)
   showQuiz1();
 };
 
@@ -77,7 +79,7 @@ function showQuiz1() {//what genre do you like?
 function answerQuiz1() {//define genre, set movieGenreCode or tvGenreCode
   genre = this.getAttribute("id");
   console.log("user selects genre " + genre);
-  if (isMovie = true) {
+  if (isMovie === true) {
     if (genre === 'action') {
     movieGenreCode = '28'
   } else if (genre === 'comedy') {
@@ -89,7 +91,7 @@ function answerQuiz1() {//define genre, set movieGenreCode or tvGenreCode
   } else if (genre === 'mystery') {
     movieGenreCode = '9648'
   }
-} else if (isMovie = false) {
+} else if (isMovie === false) {
   if (genre === 'action') {
     tvGenreCode = '10759'
   } else if (genre === 'comedy') {
@@ -102,6 +104,8 @@ function answerQuiz1() {//define genre, set movieGenreCode or tvGenreCode
     tvGenreCode = '9648'
   }
 }
+console.log('movie code ' + movieGenreCode);
+console.log('tv code ' + tvGenreCode);
 showQuiz2();
 };
 
@@ -121,7 +125,7 @@ function showQuiz2() {//what decade are you into rn?
 function answerQuiz2() {//define genre
   decade = this.getAttribute("id");
   console.log("user selects decade " + decade);
-  if (isMovie = true) {
+  if (isMovie === true) {
     if (decade === '80') {
     movieDecadeBounds = '&release_date.gte=1980-01-01&release_date.lte=1989-12-31'
   } else if (decade === '90') {
@@ -133,7 +137,7 @@ function answerQuiz2() {//define genre
   } else if (decade === '20') {
     movieDecadeBounds = '&release_date.gte=2020-01-01&release_date.lte=2029-12-31'
   }
-} else if (isMovie = false) {
+} else if (isMovie === false) {
   if (decade === '80') {
     tvDecadeBounds = '&first_air_date.gte=1980-01-01&first_air_date.lte=1989-12-31'
   } else if (decade === '90') {
@@ -146,6 +150,8 @@ function answerQuiz2() {//define genre
     tvDecadeBounds = '&first_air_date.gte=2020-01-01&first_air_date.lte=2029-12-31'
   }
 }
+console.log('movie decade ' + movieDecadeBounds);
+console.log('tv decade ' + tvDecadeBounds);
 showResults();
 };
 
@@ -157,17 +163,8 @@ function drawPoster(){
   }
   
 
-function showResults() {//quiz results
-  opening.setAttribute("style", "display:none");
-  quiz0.setAttribute("style", "display:none");
-  quiz1.setAttribute("style", "display:none");
-  quiz2.setAttribute("style", "display:none");
-  results.setAttribute("style", "display:block");
-  drawPoster();
-}
 
-document.getElementById("begin").addEventListener("click", showQuiz0);
-showOpening();
+
 
 // TMDb API stuff
 
@@ -176,7 +173,7 @@ showOpening();
 // var movieGenresByCode = ['28', '35', '878', '18', '9648'];
 // var genreListTV = ['Action & Adventure', 'Comedy', 'Sci-Fi & Fantasy', 'Drama', 'Mystery'];
 // var tvGenresByCode = ['10759', '35', '10765', '18', '9648'];
-// var noAdultContent = '&include_adult=false';
+
 // var movieOrTV = ['movie', 'tv'];
 // var dateRange = ['1980-1989', '1990-1999', '2000-2009', '2010-2019', '2020-present'];
 // var dateLowerBound = ['1980-01-01', '1990-01-01', '2000-01-01', '2010-01-01', '2020-01-01'];
@@ -218,11 +215,15 @@ function fetchMovieResults() {
     })
     .then(function (data) {
       console.log("data", data);
-      for (let i = 0; i < data.length; i++) {
-        nameData = data.results[i].original_name
-        descriptionData = data.results[i].overview
-        posterSrc = data.results[i].poster_path
-      }
+      // for (let i = 0; i < data.length; i++) {
+      //   nameData = data.results[i].original_name
+      //   descriptionData = data.results[i].overview
+      //   posterSrc = data.results[i].poster_path
+      // }
+      var randomResult = Math.floor(Math.random() * 20)
+      nameData = data.results[randomResult].title
+      descriptionData = data.results[randomResult].overview
+      posterSrc = data.results[randomResult].poster_path
       console.log(nameData);
       console.log(descriptionData);
       console.log(posterSrc);
@@ -257,6 +258,27 @@ function fetchTVResults() {
     })
 }
 
-// Test Run
-tvURL = 'https://api.themoviedb.org/3/discover/' + 'tv' + '?api_key=' + APIKey + '&first_air_date.gte=1990-01-01&first_air_date.lte=1999-12-31' + '&with_genres=' + '9648'
-fetchTVResults();
+
+
+function showResults() {//quiz results
+  opening.setAttribute("style", "display:none");
+  quiz0.setAttribute("style", "display:none");
+  quiz1.setAttribute("style", "display:none");
+  quiz2.setAttribute("style", "display:none");
+  results.setAttribute("style", "display:block");
+  if (isMovie === true) {
+    formMovieURL();
+    fetchMovieResults();
+  } else {
+    formTVURL();
+    fetchTVResults();
+  }
+  console.log(tvURL);
+  console.log(movieURL);
+  drawPoster();
+}
+
+
+
+document.getElementById("begin").addEventListener("click", showQuiz0);
+showOpening();
