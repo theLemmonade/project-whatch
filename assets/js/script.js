@@ -91,10 +91,13 @@ showOpening();
 
 //this is for showing posters
 //this can go into a then fetch
-// var posterImg = document.createElement("img");
-// posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original/" + posterSrc)
-// poster.appendChild(posterImg)
-
+// we need info for poster soource from tmdb api, ex. aVLV38txajXhEy2qNEClPIsDbAH.jpg
+function drawPoster(){
+var posterSrc = "" //api go here
+var posterImg = document.createElement("img");
+posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc)
+poster.appendChild(posterImg)
+}
 
 
 // TMDb API stuff
