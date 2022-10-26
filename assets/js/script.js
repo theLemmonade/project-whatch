@@ -184,7 +184,7 @@ var tvURL;
 // Results Variables
 var nameData;
 var descriptionData;
-var posterData;
+var posterSrc;
 
 
 // Form the URL
@@ -207,11 +207,11 @@ function fetchMovieResults() {
       for (let i = 0; i < data.length; i++) {
         nameData = data.results[i].original_name
         descriptionData = data.results[i].overview
-        posterData = data.results[i].poster_path
+        posterSrc = data.results[i].poster_path
       }
       console.log(nameData);
       console.log(descriptionData);
-      console.log(posterData);
+      console.log(posterSrc);
     })
 }
 function fetchTVResults() {
@@ -226,20 +226,20 @@ function fetchTVResults() {
       // for (var i = 0; i < 5; i++) {
       //   nameData = data.results[i].name
       //   descriptionData = data.results[i].overview
-      //   posterData = data.results[i].poster_path
+      //   posterSrc = data.results[i].poster_path
       //   console.log(nameData);
       //   console.log(descriptionData);
-      //   console.log(posterData);
+      //   console.log(posterSrc);
       //   console.log('test')
       // }
       // Random Result from the 20 results
       var randomResult = Math.floor(Math.random() * 20)
       nameData = data.results[randomResult].name
       descriptionData = data.results[randomResult].overview
-      posterData = data.results[randomResult].poster_path
+      posterSrc = data.results[randomResult].poster_path
       console.log(nameData);
       console.log(descriptionData);
-      console.log(posterData);
+      console.log(posterSrc);
     })
 }
 
