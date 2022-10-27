@@ -22,22 +22,23 @@ var tvURL;
 var nameData;
 var descriptionData;
 var posterSrc;
+var showID;
+var trailerKey;
 var genre = String;
 var isMovie = Boolean;
 var decade = Number;
 
 
-
 // Variables in testing for getting trailer
-var showID;
-var trailerKey;
+
 
 
 
 
 //quiz user
 
-function showOpening() {//opening page with start button
+//opening page with start button
+function showOpening() {
   opening.setAttribute("style", "display:block");
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:none");
@@ -45,7 +46,8 @@ function showOpening() {//opening page with start button
   results.setAttribute("style", "display:none");
 }
 
-function showQuiz0() {//movie or series?
+//movie or series?
+function showQuiz0() {
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:block");
   quiz1.setAttribute("style", "display:none");
@@ -55,7 +57,8 @@ function showQuiz0() {//movie or series?
   document.getElementById("series").addEventListener("click", answerQuiz0);
 }
 
-function answerQuiz0() {//define isMovie
+//define isMovie
+function answerQuiz0() {
   var x = this.getAttribute("id");
   if (x === "movie") {
     isMovie = true;
@@ -72,7 +75,8 @@ function answerQuiz0() {//define isMovie
   showQuiz1();
 };
 
-function showQuiz1() {//what genre do you like?
+//what genre do you like?
+function showQuiz1() {
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:block");
@@ -119,7 +123,8 @@ function answerQuiz1() {
   showQuiz2();
 };
 
-function showQuiz2() {//what decade are you into rn?
+//what decade are you into rn?
+function showQuiz2() {
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:none");
@@ -132,32 +137,33 @@ function showQuiz2() {//what decade are you into rn?
   document.getElementById("20").addEventListener("click", answerQuiz2);
 }
 
-function answerQuiz2() {//define genre
+// define genre
+function answerQuiz2() {
   decade = this.getAttribute("id");
   console.log("user selects decade " + decade);
   if (isMovie === true) {
     if (decade === '80') {
-    movieDecadeBounds = '&release_date.gte=1980-01-01&release_date.lte=1989-12-31'
+    movieDecadeBounds = '&release_date.gte=1980-01-01&release_date.lte=1989-12-31';
   } else if (decade === '90') {
-    movieDecadeBounds = '&release_date.gte=1990-01-01&release_date.lte=1999-12-31'
+    movieDecadeBounds = '&release_date.gte=1990-01-01&release_date.lte=1999-12-31';
   } else if (decade === '00') {
-    movieDecadeBounds = '&release_date.gte=2000-01-01&release_date.lte=2009-12-31'
+    movieDecadeBounds = '&release_date.gte=2000-01-01&release_date.lte=2009-12-31';
   } else if (decade === '10') {
-    movieDecadeBounds = '&release_date.gte=2010-01-01&release_date.lte=2019-12-31'
+    movieDecadeBounds = '&release_date.gte=2010-01-01&release_date.lte=2019-12-31';
   } else if (decade === '20') {
-    movieDecadeBounds = '&release_date.gte=2020-01-01&release_date.lte=2029-12-31'
+    movieDecadeBounds = '&release_date.gte=2020-01-01&release_date.lte=2029-12-31';
   }
 } else if (isMovie === false) {
   if (decade === '80') {
-    tvDecadeBounds = '&first_air_date.gte=1980-01-01&first_air_date.lte=1989-12-31'
+    tvDecadeBounds = '&first_air_date.gte=1980-01-01&first_air_date.lte=1989-12-31';
   } else if (decade === '90') {
-    tvDecadeBounds = '&first_air_date.gte=1990-01-01&first_air_date.lte=1999-12-31'
+    tvDecadeBounds = '&first_air_date.gte=1990-01-01&first_air_date.lte=1999-12-31';
   } else if (decade === '00') {
-    tvDecadeBounds = '&first_air_date.gte=2000-01-01&first_air_date.lte=2009-12-31'
+    tvDecadeBounds = '&first_air_date.gte=2000-01-01&first_air_date.lte=2009-12-31';
   } else if (decade === '10') {
-    tvDecadeBounds = '&first_air_date.gte=2010-01-01&first_air_date.lte=2019-12-31'
+    tvDecadeBounds = '&first_air_date.gte=2010-01-01&first_air_date.lte=2019-12-31';
   } else if (decade === '20') {
-    tvDecadeBounds = '&first_air_date.gte=2020-01-01&first_air_date.lte=2029-12-31'
+    tvDecadeBounds = '&first_air_date.gte=2020-01-01&first_air_date.lte=2029-12-31';
   }
 }
 console.log('movie decade ' + movieDecadeBounds);
@@ -170,23 +176,21 @@ function drawPoster(){
   posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
   console.log(posterImg);
   poster.appendChild(posterImg);
-
-  // Testing for getting trailer
+  // Call next function
   fetchTrailerID();
-
 }
   
 
 // TMDb API stuff
 // Form the URL
 function formMovieURL() {
-  movieURL = 'https://api.themoviedb.org/3/discover/' + movieOrTVShow + '?api_key=' + APIKey + movieDecadeBounds + '&with_genres=' + movieGenreCode + noAdultContent
+  movieURL = 'https://api.themoviedb.org/3/discover/' + movieOrTVShow + '?api_key=' + APIKey + movieDecadeBounds + '&with_genres=' + movieGenreCode + noAdultContent;
 }
 function formTVURL() {
-  tvURL = 'https://api.themoviedb.org/3/discover/' + movieOrTVShow + '?api_key=' + APIKey + tvDecadeBounds + '&with_genres=' + tvGenreCode
+  tvURL = 'https://api.themoviedb.org/3/discover/' + movieOrTVShow + '?api_key=' + APIKey + tvDecadeBounds + '&with_genres=' + tvGenreCode;
 }
 
-// Fetch Request
+// Fetch request for movie data
 function fetchMovieResults() {
   fetch(movieURL)
     .then(function (response) {
@@ -195,21 +199,20 @@ function fetchMovieResults() {
     })
     .then(function (data) {
       console.log("data", data);
-      var randomResult = Math.floor(Math.random() * 20)
-      nameData = data.results[randomResult].title
-      descriptionData = data.results[randomResult].overview
-      posterSrc = data.results[randomResult].poster_path
+      // Random Result from the 20 results
+      var randomResult = Math.floor(Math.random() * 20);
+      nameData = data.results[randomResult].title;
+      descriptionData = data.results[randomResult].overview;
+      posterSrc = data.results[randomResult].poster_path;
+      showID = data.results[randomResult].id;
       console.log(nameData);
       console.log(descriptionData);
       console.log(posterSrc);
-
-      // Testing for getting trailer
-      showID = data.results[randomResult].id;
       console.log(showID);
-
     })
     .then(drawPoster)
 }
+// Fetch request for tv show data
 function fetchTVResults() {
   fetch(tvURL)
     .then(function (response) {
@@ -223,14 +226,11 @@ function fetchTVResults() {
       nameData = data.results[randomResult].name;
       descriptionData = data.results[randomResult].overview;
       posterSrc = data.results[randomResult].poster_path;
+      showID = data.results[randomResult].id;
       console.log(nameData);
       console.log(descriptionData);
       console.log(posterSrc);
-
-      // Testing for getting trailer
-      showID = data.results[randomResult].id;
       console.log(showID);
-
     })
     .then(drawPoster)
 }
@@ -268,8 +268,8 @@ function fetchTrailerID() {
 
 
 
-
-function showResults() {//quiz results
+// quiz results
+function showResults() {
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:none");
