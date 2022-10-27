@@ -228,6 +228,7 @@ function fetchMovieResults() {
       console.log(descriptionData);
       console.log(posterSrc);
     })
+    .then(drawPoster)
 }
 function fetchTVResults() {
   fetch(tvURL)
@@ -256,6 +257,7 @@ function fetchTVResults() {
       console.log(descriptionData);
       console.log(posterSrc);
     })
+    .then(drawPoster)
 }
 
 
@@ -275,7 +277,6 @@ function showResults() {//quiz results
   }
   console.log(tvURL);
   console.log(movieURL);
-  drawPoster();
 }
 
 
