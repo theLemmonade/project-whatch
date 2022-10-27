@@ -1,14 +1,14 @@
 // Constants
 // Doc Selectors
-const opening = document.getElementById("opening")
-const quiz0 = document.getElementById("quiz0")
-const quiz1 = document.getElementById("quiz1")
-const quiz2 = document.getElementById("quiz2")
-const results = document.getElementById("results")
-const poster = document.getElementById("poster")
+const opening = document.getElementById("opening");
+const quiz0 = document.getElementById("quiz0");
+const quiz1 = document.getElementById("quiz1");
+const quiz2 = document.getElementById("quiz2");
+const results = document.getElementById("results");
+const poster = document.getElementById("poster");
 // Variables
 // Variables for Selectors
-var movieOrTVShow; //I know it's similar to movieOrTV; one of them is temporary, so bear with me
+var movieOrTVShow;
 var movieGenreCode;
 var tvGenreCode;
 var movieDecadeBounds;
@@ -22,9 +22,18 @@ var tvURL;
 var nameData;
 var descriptionData;
 var posterSrc;
-var genre = String
-var isMovie = Boolean
-var decade = Number
+var genre = String;
+var isMovie = Boolean;
+var decade = Number;
+
+
+
+// Variables in testing for getting trailer
+var showID;
+var trailerKey;
+
+
+
 
 //quiz user
 
@@ -47,7 +56,7 @@ function showQuiz0() {//movie or series?
 }
 
 function answerQuiz0() {//define isMovie
-  var x = this.getAttribute("id")
+  var x = this.getAttribute("id");
   if (x === "movie") {
     isMovie = true;
   } else {
@@ -55,11 +64,11 @@ function answerQuiz0() {//define isMovie
   };
   console.log("user selected movie = " + isMovie);
   if (isMovie === true) {
-    movieOrTVShow = "movie"
+    movieOrTVShow = "movie";
   } else {
-    movieOrTVShow = "tv"
-  }
-  console.log(movieOrTVShow)
+    movieOrTVShow = "tv";
+  };
+  console.log(movieOrTVShow);
   showQuiz1();
 };
 
@@ -76,37 +85,38 @@ function showQuiz1() {//what genre do you like?
   document.getElementById("mystery").addEventListener("click", answerQuiz1);
 }
 
-function answerQuiz1() {//define genre, set movieGenreCode or tvGenreCode
+// define genre, set movieGenreCode or tvGenreCode
+function answerQuiz1() {
   genre = this.getAttribute("id");
   console.log("user selects genre " + genre);
   if (isMovie === true) {
     if (genre === 'action') {
-    movieGenreCode = '28'
-  } else if (genre === 'comedy') {
-    movieGenreCode = '35'
-  } else if (genre === 'scifi') {
-    movieGenreCode = '878'
-  } else if (genre === 'drama') {
-    movieGenreCode = '18'
-  } else if (genre === 'mystery') {
-    movieGenreCode = '9648'
+      movieGenreCode = '28';
+    } else if (genre === 'comedy') {
+      movieGenreCode = '35';
+    } else if (genre === 'scifi') {
+      movieGenreCode = '878';
+    } else if (genre === 'drama') {
+      movieGenreCode = '18';
+    } else if (genre === 'mystery') {
+      movieGenreCode = '9648';
+    }
+  } else if (isMovie === false) {
+    if (genre === 'action') {
+      tvGenreCode = '10759';
+    } else if (genre === 'comedy') {
+      tvGenreCode = '35';
+    } else if (genre === 'scifi') {
+      tvGenreCode = '10765';
+    } else if (genre === 'drama') {
+      tvGenreCode = '18';
+    } else if (genre === 'mystery') {
+      tvGenreCode = '9648'
+    }
   }
-} else if (isMovie === false) {
-  if (genre === 'action') {
-    tvGenreCode = '10759'
-  } else if (genre === 'comedy') {
-    tvGenreCode = '35'
-  } else if (genre === 'scifi') {
-    tvGenreCode = '10765'
-  } else if (genre === 'drama') {
-    tvGenreCode = '18'
-  } else if (genre === 'mystery') {
-    tvGenreCode = '9648'
-  }
-}
-console.log('movie code ' + movieGenreCode);
-console.log('tv code ' + tvGenreCode);
-showQuiz2();
+  console.log('movie code ' + movieGenreCode);
+  console.log('tv code ' + tvGenreCode);
+  showQuiz2();
 };
 
 function showQuiz2() {//what decade are you into rn?
@@ -159,45 +169,15 @@ function drawPoster(){
   var posterImg = document.createElement("img");
   posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
   console.log(posterImg);
-  poster.appendChild(posterImg)
-  }
+  poster.appendChild(posterImg);
+
+  // Testing for getting trailer
+  fetchTrailerID();
+
+}
   
 
-
-
-
 // TMDb API stuff
-
-// Testing/Notes
-// var genreListMovies = ['Action', 'Comedy', 'Science Fiction', 'Drama', 'Mystery'];
-// var movieGenresByCode = ['28', '35', '878', '18', '9648'];
-// var genreListTV = ['Action & Adventure', 'Comedy', 'Sci-Fi & Fantasy', 'Drama', 'Mystery'];
-// var tvGenresByCode = ['10759', '35', '10765', '18', '9648'];
-
-// var movieOrTV = ['movie', 'tv'];
-// var dateRange = ['1980-1989', '1990-1999', '2000-2009', '2010-2019', '2020-present'];
-// var dateLowerBound = ['1980-01-01', '1990-01-01', '2000-01-01', '2010-01-01', '2020-01-01'];
-// var dateUpperBound = ['1989-12-31', '1999-12-31', '2009-12-31', '2019-12-31', '2029-12-31'];
-
-// Actual Stuff
-
-// Variables
-// Variables for Selectors
-var movieOrTVShow; //I know it's similar to movieOrTV; one of them is temporary, so bear with me
-var movieGenreCode;
-var tvGenreCode;
-var movieDecadeBounds;
-var tvDecadeBounds;
-// API Key and URL Variables
-var APIKey = '490056a86245bab731a516b282429177';
-var movieURL;
-var tvURL;
-// Results Variables
-var nameData;
-var descriptionData;
-var posterSrc;
-
-
 // Form the URL
 function formMovieURL() {
   movieURL = 'https://api.themoviedb.org/3/discover/' + movieOrTVShow + '?api_key=' + APIKey + movieDecadeBounds + '&with_genres=' + movieGenreCode + noAdultContent
@@ -215,11 +195,6 @@ function fetchMovieResults() {
     })
     .then(function (data) {
       console.log("data", data);
-      // for (let i = 0; i < data.length; i++) {
-      //   nameData = data.results[i].original_name
-      //   descriptionData = data.results[i].overview
-      //   posterSrc = data.results[i].poster_path
-      // }
       var randomResult = Math.floor(Math.random() * 20)
       nameData = data.results[randomResult].title
       descriptionData = data.results[randomResult].overview
@@ -227,6 +202,11 @@ function fetchMovieResults() {
       console.log(nameData);
       console.log(descriptionData);
       console.log(posterSrc);
+
+      // Testing for getting trailer
+      showID = data.results[randomResult].id;
+      console.log(showID);
+
     })
     .then(drawPoster)
 }
@@ -238,27 +218,54 @@ function fetchTVResults() {
     })
     .then(function (data) {
       console.log("data", data);
-      // Useful if we wwant to display multiple results
-      // for (var i = 0; i < 5; i++) {
-      //   nameData = data.results[i].name
-      //   descriptionData = data.results[i].overview
-      //   posterSrc = data.results[i].poster_path
-      //   console.log(nameData);
-      //   console.log(descriptionData);
-      //   console.log(posterSrc);
-      //   console.log('test')
-      // }
       // Random Result from the 20 results
-      var randomResult = Math.floor(Math.random() * 20)
-      nameData = data.results[randomResult].name
-      descriptionData = data.results[randomResult].overview
-      posterSrc = data.results[randomResult].poster_path
+      var randomResult = Math.floor(Math.random() * 20);
+      nameData = data.results[randomResult].name;
+      descriptionData = data.results[randomResult].overview;
+      posterSrc = data.results[randomResult].poster_path;
       console.log(nameData);
       console.log(descriptionData);
       console.log(posterSrc);
+
+      // Testing for getting trailer
+      showID = data.results[randomResult].id;
+      console.log(showID);
+
     })
     .then(drawPoster)
 }
+
+
+
+// Testing for getting trailer
+function fetchTrailerID() {
+  var showIdURL = 'https://api.themoviedb.org/3/' + movieOrTVShow + '/' + showID + '/videos?api_key=' + APIKey + '&language=en-US';
+  console.log(showIdURL);
+  fetch(showIdURL)
+    .then(function (response) {
+      console.log("response", response);
+      return response.json()
+    })
+    .then(function (data) {
+      console.log("data", data);
+      for (var i = 0; i < data.results.length; i++) {
+        if(data.results[i].type.includes("Trailer")) {
+          console.log("there's a trailer");
+          trailerKey = data.results[i].key;
+          console.log(trailerKey);
+        } else {
+          console.log("no trailer for you");
+        }
+      }
+    })
+}
+
+
+
+
+
+
+
 
 
 
