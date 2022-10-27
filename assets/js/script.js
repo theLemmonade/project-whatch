@@ -34,6 +34,7 @@ function showOpening() {//opening page with start button
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
+  info_box.setAttribute("style", "display:none");
 }
 
 function showQuiz0() {//movie or series?
@@ -42,6 +43,7 @@ function showQuiz0() {//movie or series?
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
+  info_box.setAttribute("style", "display:none");
   document.getElementById("movie").addEventListener("click", answerQuiz0);
   document.getElementById("series").addEventListener("click", answerQuiz0);
 }
@@ -208,6 +210,7 @@ function formTVURL() {
 
 // Fetch Request
 function fetchMovieResults() {
+  
   fetch(movieURL)
     .then(function (response) {
       console.log("response", response);
@@ -266,6 +269,7 @@ function showResults() {//quiz results
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:block");
+  info_box.setAttribute("style", "display:block");
   if (isMovie === true) {
     formMovieURL();
     fetchMovieResults();

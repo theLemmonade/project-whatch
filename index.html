@@ -74,11 +74,12 @@
         </div> -->
         
         
-          </div>
           <div id="quiz0">
             <h1>pick type</h1>
-            <button id="movie">Movies</button>
-            <button id="series">Series</button>
+            <button type="button" id="movie" class="btn btn-primary btn-lg">Movies</button>
+            <button type="button" id="series" class="btn btn-primary btn-lg">Tv Series</button>
+            <!-- <button id="movie">Movies</button> -->
+            <!-- <button id="series">Series</button> -->
         </div>
           <div id="quiz1">
             <h1>pick genre</h1>
@@ -97,12 +98,32 @@
             <button id="20">Today</button>
         </div>
         <div id = "results">
-            <h1 class="movieTitle">Movie Title</h1>
+          <div class= "info_box" id="info_box">
+            <div class="px-4 py-5 my-5 text-center">
+              <h1 class="display-5 fw-bold">Great job you have completed the quiz!</h1>
+              <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Take a look at what we found for you below!</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+
+                </div>
+              </div>
+            </div>
+          </div>
+            <h1 class="movieTitle" id="title">movie title</h1>
             <img id="poster"></img>
-            <div class="description"></div>
+            <div class="description" id="description"></div>
             
+            <div class="col-md-4 blog-main">
+              <h3 class="pb-4 mb-4 font-italic border-bottom">
+                Movie Poster
+              </h3>
+              <div class="blog-post">
+                <img id="poster"><img />
+
+              </div>
+
         </div>
-        <div class= "info_box" id="info_box"></div>
+        
     </div>
     
     <div><center><footer >
