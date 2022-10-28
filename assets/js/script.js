@@ -231,6 +231,8 @@ function fetchTVResults() {
       var randomResult = Math.floor(Math.random() * 20);
       nameData = data.results[randomResult].name;
       descriptionData = data.results[randomResult].overview;
+      ratingData = data.results[randomResult].vote_average;
+      releaseData = data.results[randomResult].release_date;
       posterSrc = data.results[randomResult].poster_path;
       showID = data.results[randomResult].id;
       console.log(nameData);
