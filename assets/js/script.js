@@ -273,12 +273,6 @@ function fetchTrailerID() {
 
 
 
-// Testing for getting trailer
-
-// Put this in the results page HTML
-// <div id="ytplayer"></div>
-
-
 
 function youtubeTrailer() {
     // Load the IFrame Player API code asynchronously.
