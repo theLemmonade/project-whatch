@@ -166,8 +166,8 @@ function drawPoster(){
     posterImg.setAttribute("src", "https://critics.io/img/movies/poster-placeholder.png");
     console.log(posterImg);
     poster.appendChild(posterImg);
-  }
-  
+  };
+};
 
 
 
