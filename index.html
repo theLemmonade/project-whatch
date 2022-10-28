@@ -3,182 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css"/>
     <title>Whatch</title>
-    
-
 </head>
 <body>
-    <div class="wrapper">
-        <section class="py-5 text-center container" id="opening">
-            <div class="row py-lg-5">
-              <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Welcome to Whatch!</h1>
-                <p class="lead text-muted">Wondering what movie to watch tonight? Take a seat, let us help you make a pick!</p>
-                <p>
-                <p> Three questions is all that is between you and your new favorite cinimatic adventure!</p>
-                  <a href="#" class="btn btn-primary my-2" id="begin">What to Whatch!</a>
-                </p>
-              </div>
-            </div>
-            <div class="album py-5 bg-light" id="">
-                <div class="container">
-            
-                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <div class="col">
-                      <div class="card shadow-sm">
-                        <img src="https://s.studiobinder.com/wp-content/uploads/2019/09/Movie-Genres-Types-of-Movies-List-of-Genres-and-Categories-Header-StudioBinder.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></img>
-            
-                        <div class="card-body">
-                          <p class="card-text">Tell us what genre you like! My friend asked me if I wanted to watch Dr. Strange for movie night, but I said no. I had Stranger Things to watch.
-                          </p>
-                          <div class="d-flex justify-content-between align-items-center">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="card shadow-sm">
-                        <img src="https://imageio.forbes.com/specials-images/imageserve/62f6441df08699d4509de20f/0x0.jpg?format=jpg&width=1200" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></img>
-            
-                        <div class="card-body">
-                          <p class="card-text">Let us know if you want a movie or show! If a fish got the main role in a movie, what would it be called? Starfish!</p>
-                          <div class="d-flex justify-content-between align-items-center">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="card shadow-sm">
-                        <img src="https://www.beechmountainresort.com/wp-content/uploads/2017/04/DecadesNEW2.jpg" class="bd-placeholder-img card-img-top" width="125%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></img>
-            
-                        <div class="card-body">
-                          <p class="card-text">Tell us the decade you like! Blockbuster aint got nothing on us.</p>
-                          <div class="d-flex justify-content-between align-items-center">
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-    
-                   
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </section>
-        <!-- <div id="opening">
-            <h1>welcome</h1>
-            <button id="begin">Begin</button>
-        </div> -->
-        
-        
-          <div id="quiz0">
-            <h1>pick type</h1>
-            <button type="button" id="movie" class="btn btn-primary btn-lg">Movies</button>
-            <button type="button" id="series" class="btn btn-primary btn-lg">Tv Series</button>
-            <!-- <button id="movie">Movies</button> -->
-            <!-- <button id="series">Series</button> -->
+  <div class="col-lg-6 col-md-8 mx-auto" id="opening">
+    <h1>Welcome to <b>What</b>ch</h1>
+    <h5><b>What</b>ch fetches a random movie choice.</h5>
+    <h5>Three questions seperate you from a new favorite cinematic experience!</h5>
+    <button class="btn btn-danger my-3" id="begin">What to watch?</button>
+  </div>
+  <div id="quiz0">
+    <h2>Should we find you a <b>Movie</b> or a <b>TV Series</b>?</h2>
+    <h6>Are you trying to kill two hours, or two weeks?</h6>
+    <button class="btn btn-danger my-2" id="movie">Movies</button>
+    <button class="btn btn-danger my-2" id="series">Series</button>
+  </div>
+  <div id="quiz1">
+    <h2>What <b>Genre</b> are you aiming for?</h2>
+    <h6>What's the vibe, and do not say Netflix 'n chill...</h6>
+    <button class="btn btn-danger my-2" id="action">Action & Adventure</button>
+    <button class="btn btn-danger my-2" id="comedy">Comedy</button>
+    <button class="btn btn-danger my-2" id="scifi">Science Fiction</button>
+    <button class="btn btn-danger my-2" id="drama">Drama</button>
+    <button class="btn btn-danger my-2" id="mystery">Mystery</button>
+  </div>
+  <div id="quiz2">
+    <h2>What <b>Decade</b> are you into these days?</h2>
+    <h6>Feeling millennial, or is Gen-z more your style?</h6>
+    <button class="btn btn-danger my-2" id="80">80's</button>
+    <button class="btn btn-danger my-2" id="90">90's</button>
+    <button class="btn btn-danger my-2" id="00">2000's</button>
+    <button class="btn btn-danger my-2" id="10">2010's</button>
+    <button class="btn btn-danger my-2" id="20">Today</button>
+  </div>
+  <div id = "results">
+    <div class= "info_box" id="info_box">
+      <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold">Great job you have completed the quiz!</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">Take a look at what we found for you below!</p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center"></div>
         </div>
-          <div id="quiz1">
-            <h2>What <b>Genre</b> are you aiming for?</h2>
-            <h6>What's the vibe- and do not say Netflix 'n chill...</h6>
-            <button class="btn btn-primary my-2" id="action">Action & Adventure</button>
-            <button class="btn btn-primary my-2" id="comedy">Comedy</button>
-            <button class="btn btn-primary my-2" id="scifi">Science Fiction</button>
-            <button class="btn btn-primary my-2" id="drama">Drama</button>
-            <button class="btn btn-primary my-2" id="mystery">Mystery</button>
+      </div>
+    </div>
+    <h1 class="movieTitle" id="title">movie title</h1>
+    <div class="description" id="description"></div>
+    <div class="">
+      <h3>Movie Poster</h3>
+      <div class="container"></div>
+      <div class="row">
+        <div class="col-6">
+          <div id="poster"></div>
         </div>
-        <div id="quiz2">
-            <h2>What <b>Decade</b> are you into these days?</h2>
-            <h6>Feeling millennial, or is Gen-z more your style?</h6>
-            <button class="btn btn-primary my-2" id="80">80's</button>
-            <button class="btn btn-primary my-2" id="90">90's</button>
-            <button class="btn btn-primary my-2" id="00">2000's</button>
-            <button class="btn btn-primary my-2" id="10">2010's</button>
-            <button class="btn btn-primary my-2" id="20">Today</button>
-        </div>
-        
-        <div id = "results">
-          <div class= "info_box" id="info_box">
-            <div class="px-4 py-5 my-5 text-center">
-              <h1 class="display-5 fw-bold">Great job you have completed the quiz!</h1>
-              <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">Take a look at what we found for you below!</p>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-
-                </div>
-              </div>
-            </div>
-          </div>
-            <h1 class="movieTitle" id="title">movie title</h1>
-            
-            <div class="description" id="description"></div>
-            
-            <div class="col-md-5 blog-main">
-              <h3>
-                Movie Poster
-              </h3>
-
-              <div class="container">
-                <div class="row">
-                   <div class="col-5">
-                    <div id="poster"></div>
-                   </div>
-               </div>
-              </div>
-
-              <aside class="col-md-4 blog-sidebar">
-                <div class="p-4 mb-3 bg-light rounded">
-                  <h4 class="font-italic">About</h4>
-                  <p class="mb-0">description</p>
-                </div>
-          
-                
-                
-              </aside>
-              <!-- Trailer Thing: Move to desired location-->
-              <div id="ytplayer"></div>
-        </div>
-        
+      </div>
     </div>
-    
-    <footer>
-        This product uses the TMDB API but is not endorsed or certified by TMDB
-    </footer>
-    
-<!-- <body>
-    <div id="opening">
-        <h1>welcome</h1>
-        <button id="begin">Begin</button>
-    </div>
-    <div id="quiz0">
-        <h1>title</h1>
-        <button>genre</button>
-        <button>genre</button>
-        <button>genre</button>
-        <button>genre</button>
-        <button>genre</button>
-    </div>
-    <div id="quiz1">
-        <h1>title</h1>
-        <button>movies</button>
-        <button>series</button>
-    </div>
-    <div id="quiz2">
-        <h1>title</h1>
-        <button>80's</button>
-        <button>90's</button>
-        <button>2000's</button>
-        <button>2010's</button>
-        <button>Today</button>
-    </div> -->
-
-    
-    <script src="./assets/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <aside class="col-md-4 blog-sidebar">
+      <div class="p-4 mb-3 bg-light rounded">
+        <h4 class="font-italic">About</h4>
+        <p class="mb-0">description</p>
+      </div>
+    </aside>
+  </div>
+<footer><img id="logo" src="./assets/images/tmdb.svg">This product uses the TMDB API but is not endorsed or certified by TMDB</footer>
+<script src="./assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
-</html>
 </html>
