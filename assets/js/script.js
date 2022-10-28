@@ -6,6 +6,7 @@ const quiz1 = document.getElementById("quiz1");
 const quiz2 = document.getElementById("quiz2");
 const results = document.getElementById("results");
 const resultCont = document.getElementById("resultCont");
+const resultRow =  document.getElementById("resultRow");
 const poster = document.getElementById("poster");
 const title = document.getElementById("title");
 const desc = document.getElementById("desc");
@@ -180,13 +181,13 @@ function drawResult() {
     posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
     posterImg.setAttribute("id", "posterEl");
     poster.appendChild(posterImg);
-    backdropImg = "url(https://www.themoviedb.org/t/p/original" + backdropSrc +")";
-    resultCont.setAttribute("style", "background-image: " + backdropImg)
-    // var backdropImg = document.createElement("img");
-    // backdropImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + backdropSrc)
-    // backdropImg.setAttribute("id", "backdropEl");
-    // backdropImg.className = 'bg-img';
-    // backdrop.appendChild(backdropImg)
+    // backdropImg = "url(https://www.themoviedb.org/t/p/original" + backdropSrc +")";
+    // resultCont.setAttribute("style", "background-image: " + backdropImg)
+    var backdropImg = document.createElement("img");
+    backdropImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + backdropSrc)
+    backdropImg.setAttribute("id", "backdropEl");
+    backdropImg.className = 'img-fluid float-end';
+    resultCont.insertBefore(backdropImg, resultRow)
   } else {
     var posterImg = document.createElement("img");
     posterImg.setAttribute("src", "https://critics.io/img/movies/poster-placeholder.png");
