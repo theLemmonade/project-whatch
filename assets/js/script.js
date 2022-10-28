@@ -177,6 +177,7 @@ function drawPoster(){
   if (posterSrc != null){
     var posterImg = document.createElement("img");
     posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
+    posterImg.setAttribute("id", "posterEl");
     console.log(posterImg);
     poster.appendChild(posterImg);
   } else {
