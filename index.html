@@ -75,12 +75,12 @@
         </div> -->
         
         
-          </div>
           <div id="quiz0">
-            <h2>Should we find you a <b>Movie</b> or a <b>TV Series</b>?</h2>
-            <h6>Are you trying to kill two hours, or two weeks?</h6>
-            <button class="btn btn-primary my-2" id="movie">Movies</button>
-            <button class="btn btn-primary my-2" id="series">Series</button>
+            <h1>pick type</h1>
+            <button type="button" id="movie" class="btn btn-primary btn-lg">Movies</button>
+            <button type="button" id="series" class="btn btn-primary btn-lg">Tv Series</button>
+            <!-- <button id="movie">Movies</button> -->
+            <!-- <button id="series">Series</button> -->
         </div>
           <div id="quiz1">
             <h2>What <b>Genre</b> are you aiming for?</h2>
@@ -102,12 +102,40 @@
         </div>
         
         <div id = "results">
-            <h1 class="movieTitle">Movie Title</h1>
-            <img id="poster"></img><!--  here is the movie poster -->
-            <div class="description"></div>
+          <div class= "info_box" id="info_box">
+            <div class="px-4 py-5 my-5 text-center">
+              <h1 class="display-5 fw-bold">Great job you have completed the quiz!</h1>
+              <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Take a look at what we found for you below!</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+
+                </div>
+              </div>
+            </div>
+          </div>
+            <h1 class="movieTitle" id="title">movie title</h1>
+            <img id="poster"></img>
+            <div class="description" id="description"></div>
             
+            <div class="col-md-4 blog-main">
+              <h3 class="pb-4 mb-4 font-italic border-bottom">
+                Movie Poster
+              </h3>
+              <div class="blog-post">
+                <img id="poster"><img />
+
+              </div>
+              <aside class="col-md-4 blog-sidebar">
+                <div class="p-4 mb-3 bg-light rounded">
+                  <h4 class="font-italic">About</h4>
+                  <p class="mb-0">description</p>
+                </div>
+          
+                
+                
+              </aside>
         </div>
-        <div class= "info_box" id="info_box"></div>
+        
     </div>
     
     <footer>

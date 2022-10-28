@@ -44,6 +44,7 @@ function showOpening() {
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
+  info_box.setAttribute("style", "display:none");
 }
 
 //movie or series?
@@ -53,6 +54,7 @@ function showQuiz0() {
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
+  info_box.setAttribute("style", "display:none");
   document.getElementById("movie").addEventListener("click", answerQuiz0);
   document.getElementById("series").addEventListener("click", answerQuiz0);
 }
@@ -172,14 +174,20 @@ showResults();
 };
 
 function drawPoster(){
-  var posterImg = document.createElement("img");
-  posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
-  console.log(posterImg);
-  poster.appendChild(posterImg);
-  // Call next function
-  fetchTrailerID();
-}
-  
+  if (posterSrc != null){
+    var posterImg = document.createElement("img");
+    posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
+    console.log(posterImg);
+    poster.appendChild(posterImg);
+  } else {
+    var posterImg = document.createElement("img");
+    posterImg.setAttribute("src", "https://critics.io/img/movies/poster-placeholder.png");
+    console.log(posterImg);
+    poster.appendChild(posterImg);
+  };
+    // Call next function
+    fetchTrailerID();
+};
 
 // TMDb API stuff
 // Form the URL
@@ -192,6 +200,7 @@ function formTVURL() {
 
 // Fetch request for movie data
 function fetchMovieResults() {
+  
   fetch(movieURL)
     .then(function (response) {
       console.log("response", response);
@@ -301,6 +310,7 @@ function showResults() {
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:block");
+  info_box.setAttribute("style", "display:block");
   if (isMovie === true) {
     formMovieURL();
     fetchMovieResults();
