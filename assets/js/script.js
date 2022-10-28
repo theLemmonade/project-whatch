@@ -5,8 +5,8 @@ const quiz0 = document.getElementById("quiz0");
 const quiz1 = document.getElementById("quiz1");
 const quiz2 = document.getElementById("quiz2");
 const results = document.getElementById("results");
+const resultCont = document.getElementById("resultCont");
 const poster = document.getElementById("poster");
-const backdrop = document.getElementById("backdrop");
 const title = document.getElementById("title");
 const desc = document.getElementById("desc");
 const date = document.getElementById("date");
@@ -32,6 +32,7 @@ var descriptionData;
 var releaseData;
 var ratingData;
 var posterSrc;
+var backdropImg;
 var showID;
 var trailerKey;
 // YouTube API Required Variable
@@ -179,10 +180,13 @@ function drawResult() {
     posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
     posterImg.setAttribute("id", "posterEl");
     poster.appendChild(posterImg);
-    var backdropImg = document.createElement("img");
-    backdropImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + backdropSrc)
-    backdropImg.setAttribute("id", "backdropEl");
-    backdrop.appendChild(backdropImg)
+    backdropImg = "url(https://www.themoviedb.org/t/p/original" + backdropSrc +")";
+    resultCont.setAttribute("style", "background-image: " + backdropImg)
+    // var backdropImg = document.createElement("img");
+    // backdropImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + backdropSrc)
+    // backdropImg.setAttribute("id", "backdropEl");
+    // backdropImg.className = 'bg-img';
+    // backdrop.appendChild(backdropImg)
   } else {
     var posterImg = document.createElement("img");
     posterImg.setAttribute("src", "https://critics.io/img/movies/poster-placeholder.png");
@@ -224,6 +228,7 @@ function fetchMovieResults() {
       ratingData = data.results[randomResult].vote_average;
       releaseData = data.results[randomResult].release_date;
       posterSrc = data.results[randomResult].poster_path;
+      backdropSrc = data.results[randomResult].backdrop_path;
       showID = data.results[randomResult].id;
       console.log(nameData);
       console.log(descriptionData);
