@@ -29,27 +29,6 @@ h1, h2, h3, h4, h5, h6 {
     margin: 50px;
 }
 
-#ytplayer {
-    display: block;
-    margin: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    min-height: 100%;
-    border-radius: 10px;
-}
-
-footer {
-    text-align: center;
-    color: rgb(100, 100, 100);
-    position: fixed;
-    left: 50%;
-    bottom: 20px;
-    transform: translate(-50%, -50%);
-    margin: 30 auto;
-    width: 100%;
-    z-index: -20;
-}
-
 .results {
     margin-bottom: 50px;
 }
@@ -61,6 +40,8 @@ footer {
     box-shadow: 0px 0px 20px 5px black;
     max-width: 1280px;
     position: relative;
+    background-color: rgb(23, 23, 23);
+    z-index: -2;
 }
 
 #backdropEl {
@@ -70,15 +51,45 @@ footer {
     opacity: 20%;
     border-radius: 10px 10px 0px 0px;
     border-bottom: 2px solid rgb(43, 43, 43);
-    z-index: -10;
+    z-index: -1;
 }
 
 
 #posterEl{
     width: 100%;
+    border: 2px solid rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     box-shadow: 0px 0px 20px 5px rgb(6, 6, 6, .4);
     float: inline-start;
+}
+
+#ytplayer {
+    display: block;
+    margin: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100%;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+
+}
+
+#reset {
+    width: 150px;
+    margin: 30px 0px;
+    margin-left: 44%;
+}
+
+footer {
+    text-align: center;
+    color: rgb(100, 100, 100);
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, -50%);
+    margin: 30 auto;
+    width: 100%;
+    z-index: 0;
 }
 
 #logo {
