@@ -6,6 +6,8 @@ const quiz1 = document.getElementById("quiz1");
 const quiz2 = document.getElementById("quiz2");
 const results = document.getElementById("results");
 const poster = document.getElementById("poster");
+const title = document.getElementById("title")
+const desc = document.getElementById("desc")
 // Quiz Selectors
 var genre = String;
 var isMovie = Boolean;
@@ -166,7 +168,7 @@ function answerQuiz2() {
   showResults();
 };
 
-function drawPoster() {
+function drawResult() {
   if (posterSrc != null){
     var posterImg = document.createElement("img");
     posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
@@ -178,6 +180,8 @@ function drawPoster() {
     posterImg.setAttribute("src", "https://critics.io/img/movies/poster-placeholder.png");
     poster.appendChild(posterImg);
   };
+  title.textContent = nameData;
+  desc.textContent = descriptionData;
   // Call next function
   fetchTrailerID();
 };
@@ -212,7 +216,7 @@ function fetchMovieResults() {
       console.log(posterSrc);
       console.log(showID);
     })
-    .then(drawPoster)
+    .then(drawResult)
 }
 // Fetch request for tv show data
 function fetchTVResults() {
@@ -234,7 +238,7 @@ function fetchTVResults() {
       console.log(posterSrc);
       console.log(showID);
     })
-    .then(drawPoster)
+    .then(drawResult)
 }
 
 // Get the youtube id
