@@ -158,12 +158,18 @@ showResults();
 };
 
 function drawPoster(){
-  var posterImg = document.createElement("img");
-  posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
-  console.log(posterImg);
-  poster.appendChild(posterImg)
-  }
-  
+  if (posterSrc != null){
+    var posterImg = document.createElement("img");
+    posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
+    console.log(posterImg);
+    poster.appendChild(posterImg);
+  } else {
+    var posterImg = document.createElement("img");
+    posterImg.setAttribute("src", "https://critics.io/img/movies/poster-placeholder.png");
+    console.log(posterImg);
+    poster.appendChild(posterImg);
+  };
+};
 
 
 
@@ -231,6 +237,7 @@ function fetchMovieResults() {
       console.log(descriptionData);
       console.log(posterSrc);
     })
+    .then(drawPoster)
 }
 function fetchTVResults() {
   fetch(tvURL)
@@ -259,6 +266,7 @@ function fetchTVResults() {
       console.log(descriptionData);
       console.log(posterSrc);
     })
+    .then(drawPoster)
 }
 
 
@@ -279,7 +287,6 @@ function showResults() {//quiz results
   }
   console.log(tvURL);
   console.log(movieURL);
-  drawPoster();
 }
 
 
