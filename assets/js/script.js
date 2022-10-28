@@ -30,7 +30,7 @@ var decade = Number;
 
 
 // Variables in testing for getting trailer
-
+var YT; // Unknown if helpful/necessary
 
 
 
@@ -281,11 +281,10 @@ function youtubeTrailer() {
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }
-    // Replace the 'ytplayer' element with an <iframe> and
+  // Replace the 'ytplayer' element with an <iframe> and
   // YouTube player after the API code downloads.
   var player;
   function onYouTubePlayerAPIReady() {
-    console.log(trailerKey)
     player = new YT.Player('ytplayer', {
       height: '360',
       width: '640',
