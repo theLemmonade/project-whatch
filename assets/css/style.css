@@ -6,11 +6,11 @@ body {
 }
 
 #margin {
-    margin: 345px;
+    margin: 343px;
 }
 
 b {
-    color: rgb(234, 75, 75);
+    color: rgb(255, 86, 86);
 }
 
 #hero {
@@ -29,7 +29,7 @@ b {
 
 #opening, #quiz0, #quiz1, #quiz2 {
     margin: auto;
-    margin-top: 100px;
+    margin-top: 300px;
     width: 80%;
     text-align: center;
 }
