@@ -265,7 +265,8 @@ function fetchTrailerID() {
 
 
 
-
+// REQUIRED IN HTML:
+// <div id="ytplayer"></div>
 
 function youtubeTrailer() {
     // Load the IFrame Player API code asynchronously.
