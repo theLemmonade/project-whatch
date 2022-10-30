@@ -53,9 +53,9 @@ function showQuiz0() {
 
 // Determine question 1 results
 function answerQuiz0() {
-  var x = this.getAttribute("id");
+  var thisId = this.getAttribute("id");
   // Check if movie or tv show was selected
-  if (x === "movie") {
+  if (thisId === "movie") {
     isMovie = true;
   } else {
     isMovie = false;
