@@ -13,6 +13,7 @@ const title = document.getElementById("title");
 const desc = document.getElementById("desc");
 const date = document.getElementById("date");
 const rating = document.getElementById("rating");
+const search = document.getElementById("search")
 // Quiz Selectors
 var genre = String;
 var isMovie = Boolean;
@@ -200,6 +201,7 @@ function drawResult() {
   year = releaseData.substr(0, 4);
   date.textContent = year;
   rating.textContent = ratingData;
+  search.setAttribute("href", "https://reelgood.com/search?q=" + nameData)
   // Call next function
   fetchTrailerID();
 };
