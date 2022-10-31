@@ -13,6 +13,7 @@ const title = document.getElementById("title");
 const desc = document.getElementById("desc");
 const date = document.getElementById("date");
 const rating = document.getElementById("rating");
+const reset = document.getElementById("reset");
 // Quiz Selectors
 var genre = String;
 var isMovie = Boolean;
