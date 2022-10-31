@@ -200,6 +200,9 @@ function drawResult() {
 
   };
   title.textContent = nameData;
+  if (descriptionData.length > 500) {
+    desc.setAttribute("style", "font-size:20px")
+  };
   desc.textContent = descriptionData;
   year = releaseData.substr(0, 4);
   date.textContent = year;
@@ -286,8 +289,8 @@ function fetchTrailerID() {
           console.log("there's a trailer");
           trailerKey = data.results[i].key;
           console.log(trailerKey);
+          return
         } else {
-          ytcont.setAttribute("style", "display:none");
           console.log("no trailer for you");
         }
       }
@@ -310,13 +313,18 @@ function youtubeTrailer() {
 }
   // Replace the 'ytplayer' element with an <iframe> and
   // YouTube player after the API code downloads.
-
+  // If there is no trailer, hide the youtube player tray
   function onYouTubePlayerAPIReady() {
-    player = new YT.Player('ytplayer', {
-      height: '360',
-      width: '640',
-      videoId: trailerKey
+    if (trailerKey != null) {
+      player = new YT.Player('ytplayer', {
+        height: '360',
+        width: '640',
+        videoId: trailerKey
     });
+  } else {
+    ytcont.setAttribute("style", "display:none")
+    console.log("hiding player")
+  }
   }
 
 // Display quiz results, direct API call to movie or TV
