@@ -15,21 +15,20 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-#margin {
-    margin: 343px;
-}
-
-#hero {
+#opening {
     position: absolute;
-    height: auto;
-    max-width: 1400px;
-    min-width: auto;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
-    text-align: center;
-    bottom: 200px;
+}
+
+#hero {
+    position: absolute;
+    top: -555px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1440px;
     z-index: -1;
 }
 
