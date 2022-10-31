@@ -198,6 +198,9 @@ function drawResult() {
     poster.appendChild(posterImg);
   };
   title.textContent = nameData;
+  if (descriptionData.length > 500) {
+    desc.setAttribute("style", "font-size:20px")
+  };
   desc.textContent = descriptionData;
   year = releaseData.substr(0, 4);
   date.textContent = year;
@@ -279,8 +282,9 @@ function fetchTrailerID() {
       for (var i = 0; i < data.results.length; i++) {
         if(data.results[i].type.includes("Trailer")) {
           trailerKey = data.results[i].key;
+          console.log(trailerKey);
+          return
         } else {
-          ytcont.setAttribute("style", "display:none");
           console.log("no trailer for you");
         }
       }
@@ -298,16 +302,21 @@ function youtubeTrailer() {
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }
-// Replace the 'ytplayer' element with an <iframe> and
-// YouTube player after the API code downloads.
-function onYouTubePlayerAPIReady() {
-  player = new YT.Player('ytplayer', {
-    height: '360',
-    width: '640',
-    videoId: trailerKey
-  });
-}
-// End of Youtube IFrame Player API documentation copied section
+  // Replace the 'ytplayer' element with an <iframe> and
+  // YouTube player after the API code downloads.
+  // If there is no trailer, hide the youtube player tray
+  function onYouTubePlayerAPIReady() {
+    if (trailerKey != null) {
+      player = new YT.Player('ytplayer', {
+        height: '360',
+        width: '640',
+        videoId: trailerKey
+    });
+  } else {
+    ytcont.setAttribute("style", "display:none")
+    console.log("hiding player")
+  }
+  }
 
 // Display quiz results, direct API call to movie or TV
 function showResults() {
@@ -335,7 +344,4 @@ function reset () {
 // Event Listeners
 begin.addEventListener("click", showQuiz0);
 reload.addEventListener("click", reset);
-// showOpening();
-// document.getElementById("begin").addEventListener("click", showQuiz0);
-// document.getElementById("reset").addEventListener("click", reset);
 showOpening();
