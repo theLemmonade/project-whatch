@@ -1,6 +1,7 @@
 // Variables
 // DOM Element References
 const opening = document.getElementById("opening");
+const begin = document.getElementById("begin")
 const quiz0 = document.getElementById("quiz0");
 const quiz1 = document.getElementById("quiz1");
 const quiz2 = document.getElementById("quiz2");
@@ -14,6 +15,8 @@ const desc = document.getElementById("desc");
 const date = document.getElementById("date");
 const rating = document.getElementById("rating");
 const search = document.getElementById("search");
+const ytcont = document.getElementById("ytcontainer")
+const reload = document.getElementById("reset")
 // Quiz Selectors
 var genre = String;
 var isMovie = Boolean;
@@ -277,7 +280,8 @@ function fetchTrailerID() {
         if(data.results[i].type.includes("Trailer")) {
           trailerKey = data.results[i].key;
         } else {
-          // THIS NEEDS SOMETHING IF THERE IS NO TRAILER ???
+          ytcont.setAttribute("style", "display:none");
+          console.log("no trailer for you");
         }
       }
     })
@@ -329,6 +333,9 @@ function reset () {
 }
 
 // Event Listeners
+begin.addEventListener("click", showQuiz0);
+reload.addEventListener("click", reset);
+showOpening();
 document.getElementById("begin").addEventListener("click", showQuiz0);
 document.getElementById("reset").addEventListener("click", reset);
 showOpening();
