@@ -5,7 +5,15 @@ const quiz0 = document.getElementById("quiz0");
 const quiz1 = document.getElementById("quiz1");
 const quiz2 = document.getElementById("quiz2");
 const results = document.getElementById("results");
+const footer = document.getElementById("footer");
+const resultCont = document.getElementById("resultCont");
+const resultRow =  document.getElementById("resultRow");
 const poster = document.getElementById("poster");
+const title = document.getElementById("title");
+const desc = document.getElementById("desc");
+const date = document.getElementById("date");
+const rating = document.getElementById("rating");
+const reset = document.getElementById("reset");
 // Quiz Selectors
 var genre = String;
 var isMovie = Boolean;
@@ -24,7 +32,10 @@ var tvURL;
 // Data Results
 var nameData;
 var descriptionData;
+var releaseData;
+var ratingData;
 var posterSrc;
+var backdropImg;
 var showID;
 var trailerKey;
 // YouTube API Required Variable
@@ -166,18 +177,30 @@ function answerQuiz2() {
   showResults();
 };
 
-function drawPoster() {
+function drawResult() {
   if (posterSrc != null){
     var posterImg = document.createElement("img");
     posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
     posterImg.setAttribute("id", "posterEl");
-    console.log(posterImg);
     poster.appendChild(posterImg);
+    // backdropImg = "url(https://www.themoviedb.org/t/p/original" + backdropSrc +")";
+    // resultCont.setAttribute("style", "background-image: " + backdropImg)
+    var backdropImg = document.createElement("img");
+    backdropImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + backdropSrc)
+    backdropImg.setAttribute("id", "backdropEl");
+    backdropImg.className = 'img-fluid float-end';
+    resultCont.insertBefore(backdropImg, resultRow)
   } else {
     var posterImg = document.createElement("img");
     posterImg.setAttribute("src", "https://critics.io/img/movies/poster-placeholder.png");
     poster.appendChild(posterImg);
+
   };
+  title.textContent = nameData;
+  desc.textContent = descriptionData;
+  year = releaseData.substr(0, 4);
+  date.textContent = year;
+  rating.textContent = ratingData;
   // Call next function
   fetchTrailerID();
 };
@@ -205,14 +228,17 @@ function fetchMovieResults() {
       var randomResult = Math.floor(Math.random() * 20);
       nameData = data.results[randomResult].title;
       descriptionData = data.results[randomResult].overview;
+      ratingData = data.results[randomResult].vote_average;
+      releaseData = data.results[randomResult].release_date;
       posterSrc = data.results[randomResult].poster_path;
+      backdropSrc = data.results[randomResult].backdrop_path;
       showID = data.results[randomResult].id;
       console.log(nameData);
       console.log(descriptionData);
       console.log(posterSrc);
       console.log(showID);
     })
-    .then(drawPoster)
+    .then(drawResult)
 }
 // Fetch request for tv show data
 function fetchTVResults() {
@@ -227,14 +253,17 @@ function fetchTVResults() {
       var randomResult = Math.floor(Math.random() * 20);
       nameData = data.results[randomResult].name;
       descriptionData = data.results[randomResult].overview;
+      ratingData = data.results[randomResult].vote_average;
+      releaseData = data.results[randomResult].release_date;
       posterSrc = data.results[randomResult].poster_path;
+      backdropSrc = data.results[randomResult].backdrop_path;
       showID = data.results[randomResult].id;
       console.log(nameData);
       console.log(descriptionData);
       console.log(posterSrc);
       console.log(showID);
     })
-    .then(drawPoster)
+    .then(drawResult)
 }
 
 // Get the youtube id
