@@ -1,83 +1,87 @@
-// Constants
-// Doc Selectors
+// Variables
+// DOM Element References
 const opening = document.getElementById("opening");
 const quiz0 = document.getElementById("quiz0");
 const quiz1 = document.getElementById("quiz1");
 const quiz2 = document.getElementById("quiz2");
 const results = document.getElementById("results");
+const footer = document.getElementById("footer");
+const resultCont = document.getElementById("resultCont");
+const resultRow =  document.getElementById("resultRow");
 const poster = document.getElementById("poster");
-// Variables
-// Variables for Selectors
+const title = document.getElementById("title");
+const desc = document.getElementById("desc");
+const date = document.getElementById("date");
+const rating = document.getElementById("rating");
+const search = document.getElementById("search")
+// Quiz Selectors
+var genre = String;
+var isMovie = Boolean;
+var decade = Number;
 var movieOrTVShow;
 var movieGenreCode;
 var tvGenreCode;
 var movieDecadeBounds;
 var tvDecadeBounds;
 var noAdultContent = '&include_adult=false';
-// API Key and URL Variables
+// API Key
 var APIKey = '490056a86245bab731a516b282429177';
+// URLs
 var movieURL;
 var tvURL;
-// Results Variables
+// Data Results
 var nameData;
 var descriptionData;
+var releaseData;
+var ratingData;
 var posterSrc;
+var backdropImg;
 var showID;
 var trailerKey;
-var genre = String;
-var isMovie = Boolean;
-var decade = Number;
+// YouTube API Required Variable
+var player;
 
-
-// Variables in testing for getting trailer
-
-
-
-
-
-//quiz user
-
-//opening page with start button
+// Functions
+// Display only the opening page
 function showOpening() {
   opening.setAttribute("style", "display:block");
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
-  info_box.setAttribute("style", "display:none");
 }
 
-//movie or series?
+// Question 1: Do you want to watch a movie or a tv show?
 function showQuiz0() {
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:block");
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
-  info_box.setAttribute("style", "display:none");
   document.getElementById("movie").addEventListener("click", answerQuiz0);
   document.getElementById("series").addEventListener("click", answerQuiz0);
 }
 
-//define isMovie
+// Determine question 1 results
 function answerQuiz0() {
-  var x = this.getAttribute("id");
-  if (x === "movie") {
+  var thisId = this.getAttribute("id");
+  // Check if movie or tv show was selected
+  if (thisId === "movie") {
     isMovie = true;
   } else {
     isMovie = false;
   };
-  console.log("user selected movie = " + isMovie);
+  // Set movieOrTVShow selector value
   if (isMovie === true) {
     movieOrTVShow = "movie";
   } else {
     movieOrTVShow = "tv";
   };
-  console.log(movieOrTVShow);
+  // Call question 2
   showQuiz1();
 };
 
-//what genre do you like?
+// Question 2: What genre do you want to watch?
 function showQuiz1() {
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
@@ -91,10 +95,10 @@ function showQuiz1() {
   document.getElementById("mystery").addEventListener("click", answerQuiz1);
 }
 
-// define genre, set movieGenreCode or tvGenreCode
+// Determine question 2 results
 function answerQuiz1() {
   genre = this.getAttribute("id");
-  console.log("user selects genre " + genre);
+  // Set genre code selector if user selected movie in question 1
   if (isMovie === true) {
     if (genre === 'action') {
       movieGenreCode = '28';
@@ -107,6 +111,7 @@ function answerQuiz1() {
     } else if (genre === 'mystery') {
       movieGenreCode = '9648';
     }
+  // Set genre code selector if user selected tv show in question 1
   } else if (isMovie === false) {
     if (genre === 'action') {
       tvGenreCode = '10759';
@@ -117,15 +122,14 @@ function answerQuiz1() {
     } else if (genre === 'drama') {
       tvGenreCode = '18';
     } else if (genre === 'mystery') {
-      tvGenreCode = '9648'
+      tvGenreCode = '9648';
     }
   }
-  console.log('movie code ' + movieGenreCode);
-  console.log('tv code ' + tvGenreCode);
+  // Call question 3
   showQuiz2();
 };
 
-//what decade are you into rn?
+// Question 3: What decade do you want to watch something from?
 function showQuiz2() {
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
@@ -139,54 +143,67 @@ function showQuiz2() {
   document.getElementById("20").addEventListener("click", answerQuiz2);
 }
 
-// define genre
+// Determine question 3 results
 function answerQuiz2() {
   decade = this.getAttribute("id");
-  console.log("user selects decade " + decade);
+  // Set decade bounds selector if user selected movie in question 1
   if (isMovie === true) {
     if (decade === '80') {
-    movieDecadeBounds = '&release_date.gte=1980-01-01&release_date.lte=1989-12-31';
-  } else if (decade === '90') {
-    movieDecadeBounds = '&release_date.gte=1990-01-01&release_date.lte=1999-12-31';
-  } else if (decade === '00') {
-    movieDecadeBounds = '&release_date.gte=2000-01-01&release_date.lte=2009-12-31';
-  } else if (decade === '10') {
-    movieDecadeBounds = '&release_date.gte=2010-01-01&release_date.lte=2019-12-31';
-  } else if (decade === '20') {
-    movieDecadeBounds = '&release_date.gte=2020-01-01&release_date.lte=2029-12-31';
+      movieDecadeBounds = '&release_date.gte=1980-01-01&release_date.lte=1989-12-31';
+    } else if (decade === '90') {
+      movieDecadeBounds = '&release_date.gte=1990-01-01&release_date.lte=1999-12-31';
+    } else if (decade === '00') {
+      movieDecadeBounds = '&release_date.gte=2000-01-01&release_date.lte=2009-12-31';
+    } else if (decade === '10') {
+      movieDecadeBounds = '&release_date.gte=2010-01-01&release_date.lte=2019-12-31';
+    } else if (decade === '20') {
+      movieDecadeBounds = '&release_date.gte=2020-01-01&release_date.lte=2029-12-31';
+    }
+  // Set decade bounds selector if user selected tv show in question 1
+  } else if (isMovie === false) {
+    if (decade === '80') {
+      tvDecadeBounds = '&first_air_date.gte=1980-01-01&first_air_date.lte=1989-12-31';
+    } else if (decade === '90') {
+      tvDecadeBounds = '&first_air_date.gte=1990-01-01&first_air_date.lte=1999-12-31';
+    } else if (decade === '00') {
+      tvDecadeBounds = '&first_air_date.gte=2000-01-01&first_air_date.lte=2009-12-31';
+    } else if (decade === '10') {
+      tvDecadeBounds = '&first_air_date.gte=2010-01-01&first_air_date.lte=2019-12-31';
+    } else if (decade === '20') {
+      tvDecadeBounds = '&first_air_date.gte=2020-01-01&first_air_date.lte=2029-12-31';
+    }
   }
-} else if (isMovie === false) {
-  if (decade === '80') {
-    tvDecadeBounds = '&first_air_date.gte=1980-01-01&first_air_date.lte=1989-12-31';
-  } else if (decade === '90') {
-    tvDecadeBounds = '&first_air_date.gte=1990-01-01&first_air_date.lte=1999-12-31';
-  } else if (decade === '00') {
-    tvDecadeBounds = '&first_air_date.gte=2000-01-01&first_air_date.lte=2009-12-31';
-  } else if (decade === '10') {
-    tvDecadeBounds = '&first_air_date.gte=2010-01-01&first_air_date.lte=2019-12-31';
-  } else if (decade === '20') {
-    tvDecadeBounds = '&first_air_date.gte=2020-01-01&first_air_date.lte=2029-12-31';
-  }
-}
-console.log('movie decade ' + movieDecadeBounds);
-console.log('tv decade ' + tvDecadeBounds);
-showResults();
+  // Call results
+  showResults();
 };
 
-function drawPoster(){
+function drawResult() {
   if (posterSrc != null){
     var posterImg = document.createElement("img");
     posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
-    console.log(posterImg);
+    posterImg.setAttribute("id", "posterEl");
     poster.appendChild(posterImg);
+    // backdropImg = "url(https://www.themoviedb.org/t/p/original" + backdropSrc +")";
+    // resultCont.setAttribute("style", "background-image: " + backdropImg)
+    var backdropImg = document.createElement("img");
+    backdropImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + backdropSrc)
+    backdropImg.setAttribute("id", "backdropEl");
+    backdropImg.className = 'img-fluid float-end';
+    resultCont.insertBefore(backdropImg, resultRow)
   } else {
     var posterImg = document.createElement("img");
     posterImg.setAttribute("src", "https://critics.io/img/movies/poster-placeholder.png");
-    console.log(posterImg);
     poster.appendChild(posterImg);
+
   };
-    // Call next function
-    fetchTrailerID();
+  title.textContent = nameData;
+  desc.textContent = descriptionData;
+  year = releaseData.substr(0, 4);
+  date.textContent = year;
+  rating.textContent = ratingData;
+  search.setAttribute("href", "https://reelgood.com/search?q=" + nameData)
+  // Call next function
+  fetchTrailerID();
 };
 
 // TMDb API stuff
@@ -212,14 +229,17 @@ function fetchMovieResults() {
       var randomResult = Math.floor(Math.random() * 20);
       nameData = data.results[randomResult].title;
       descriptionData = data.results[randomResult].overview;
+      ratingData = data.results[randomResult].vote_average;
+      releaseData = data.results[randomResult].release_date;
       posterSrc = data.results[randomResult].poster_path;
+      backdropSrc = data.results[randomResult].backdrop_path;
       showID = data.results[randomResult].id;
       console.log(nameData);
       console.log(descriptionData);
       console.log(posterSrc);
       console.log(showID);
     })
-    .then(drawPoster)
+    .then(drawResult)
 }
 // Fetch request for tv show data
 function fetchTVResults() {
@@ -234,14 +254,17 @@ function fetchTVResults() {
       var randomResult = Math.floor(Math.random() * 20);
       nameData = data.results[randomResult].name;
       descriptionData = data.results[randomResult].overview;
+      ratingData = data.results[randomResult].vote_average;
+      releaseData = data.results[randomResult].release_date;
       posterSrc = data.results[randomResult].poster_path;
+      backdropSrc = data.results[randomResult].backdrop_path;
       showID = data.results[randomResult].id;
       console.log(nameData);
       console.log(descriptionData);
       console.log(posterSrc);
       console.log(showID);
     })
-    .then(drawPoster)
+    .then(drawResult)
 }
 
 // Get the youtube id
@@ -281,11 +304,10 @@ function youtubeTrailer() {
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }
-    // Replace the 'ytplayer' element with an <iframe> and
+  // Replace the 'ytplayer' element with an <iframe> and
   // YouTube player after the API code downloads.
-  var player;
+
   function onYouTubePlayerAPIReady() {
-    console.log(trailerKey)
     player = new YT.Player('ytplayer', {
       height: '360',
       width: '640',
@@ -293,18 +315,13 @@ function youtubeTrailer() {
     });
   }
 
-
-
-
-
-// quiz results
+// Display quiz results, direct API call to movie or TV
 function showResults() {
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:block");
-  info_box.setAttribute("style", "display:block");
   if (isMovie === true) {
     formMovieURL();
     fetchMovieResults();
@@ -316,7 +333,10 @@ function showResults() {
   console.log(movieURL);
 }
 
-
+function reset () {
+  location.reload()
+}
 
 document.getElementById("begin").addEventListener("click", showQuiz0);
+document.getElementById("reset").addEventListener("click", reset);
 showOpening();
