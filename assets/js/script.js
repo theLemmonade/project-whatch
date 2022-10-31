@@ -180,24 +180,22 @@ function answerQuiz2() {
   showResults();
 };
 
+// Display the results
 function drawResult() {
   if (posterSrc != null){
     var posterImg = document.createElement("img");
     posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
     posterImg.setAttribute("id", "posterEl");
     poster.appendChild(posterImg);
-    // backdropImg = "url(https://www.themoviedb.org/t/p/original" + backdropSrc +")";
-    // resultCont.setAttribute("style", "background-image: " + backdropImg)
     var backdropImg = document.createElement("img");
-    backdropImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + backdropSrc)
+    backdropImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + backdropSrc);
     backdropImg.setAttribute("id", "backdropEl");
     backdropImg.className = 'img-fluid float-end';
-    resultCont.insertBefore(backdropImg, resultRow)
+    resultCont.insertBefore(backdropImg, resultRow);
   } else {
     var posterImg = document.createElement("img");
     posterImg.setAttribute("src", "https://critics.io/img/movies/poster-placeholder.png");
     poster.appendChild(posterImg);
-
   };
   title.textContent = nameData;
   if (descriptionData.length > 500) {
@@ -207,12 +205,12 @@ function drawResult() {
   year = releaseData.substr(0, 4);
   date.textContent = year;
   rating.textContent = ratingData;
-  search.setAttribute("href", "https://reelgood.com/search?q=" + nameData)
+  search.setAttribute("href", "https://reelgood.com/search?q=" + nameData);
   // Call next function
   fetchTrailerID();
 };
 
-// TMDb API stuff
+// TMDb API Functions
 // Form the URL
 function formMovieURL() {
   movieURL = 'https://api.themoviedb.org/3/discover/' + movieOrTVShow + '?api_key=' + APIKey + movieDecadeBounds + '&with_genres=' + movieGenreCode + noAdultContent;
@@ -221,17 +219,14 @@ function formTVURL() {
   tvURL = 'https://api.themoviedb.org/3/discover/' + movieOrTVShow + '?api_key=' + APIKey + tvDecadeBounds + '&with_genres=' + tvGenreCode;
 }
 
-// Fetch request for movie data
+// Get the results data if the user selected movie
 function fetchMovieResults() {
-  
   fetch(movieURL)
     .then(function (response) {
-      console.log("response", response);
       return response.json()
     })
     .then(function (data) {
-      console.log("data", data);
-      // Random Result from the 20 results
+      // Randomize which result is retrieved
       var randomResult = Math.floor(Math.random() * 20);
       nameData = data.results[randomResult].title;
       descriptionData = data.results[randomResult].overview;
@@ -245,18 +240,17 @@ function fetchMovieResults() {
       console.log(posterSrc);
       console.log(showID);
     })
+    // Call the next function
     .then(drawResult)
 }
-// Fetch request for tv show data
+// Get the results data if the user selected tv show
 function fetchTVResults() {
   fetch(tvURL)
     .then(function (response) {
-      console.log("response", response);
       return response.json()
     })
     .then(function (data) {
-      console.log("data", data);
-      // Random Result from the 20 results
+      // Randomize which result is retrieved
       var randomResult = Math.floor(Math.random() * 20);
       nameData = data.results[randomResult].name;
       descriptionData = data.results[randomResult].overview;
@@ -270,10 +264,11 @@ function fetchTVResults() {
       console.log(posterSrc);
       console.log(showID);
     })
+    // Call the next function
     .then(drawResult)
 }
 
-// Get the youtube id
+// Get the YouTube id
 function fetchTrailerID() {
   var showIdURL = 'https://api.themoviedb.org/3/' + movieOrTVShow + '/' + showID + '/videos?api_key=' + APIKey + '&language=en-US';
   console.log(showIdURL);
@@ -286,7 +281,6 @@ function fetchTrailerID() {
       console.log("data", data);
       for (var i = 0; i < data.results.length; i++) {
         if(data.results[i].type.includes("Trailer")) {
-          console.log("there's a trailer");
           trailerKey = data.results[i].key;
           console.log(trailerKey);
           return
@@ -294,16 +288,13 @@ function fetchTrailerID() {
           console.log("no trailer for you");
         }
       }
-
     })
     .then(youtubeTrailer)
     .then(onYouTubePlayerAPIReady)
 }
 
-
-
-
-
+// YouTube IFrame Player API functions
+// Copied from the documentation website
 function youtubeTrailer() {
     // Load the IFrame Player API code asynchronously.
     var tag = document.createElement('script');
@@ -345,10 +336,12 @@ function showResults() {
   console.log(movieURL);
 }
 
+// Reset the page
 function reset () {
   location.reload()
 }
 
+// Event Listeners
 begin.addEventListener("click", showQuiz0);
 reload.addEventListener("click", reset);
 showOpening();
