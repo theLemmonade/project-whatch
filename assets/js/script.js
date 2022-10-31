@@ -184,12 +184,6 @@ function drawResult() {
     posterImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + posterSrc);
     posterImg.setAttribute("id", "posterEl");
     poster.appendChild(posterImg);
-
-    // SHOULD THESE COMMENTED LINES BE HERE ???
-
-    // backdropImg = "url(https://www.themoviedb.org/t/p/original" + backdropSrc +")";
-    // resultCont.setAttribute("style", "background-image: " + backdropImg)
-
     var backdropImg = document.createElement("img");
     backdropImg.setAttribute("src", "https://www.themoviedb.org/t/p/original" + backdropSrc);
     backdropImg.setAttribute("id", "backdropEl");
