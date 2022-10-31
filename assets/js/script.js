@@ -335,7 +335,7 @@ function reset () {
 // Event Listeners
 begin.addEventListener("click", showQuiz0);
 reload.addEventListener("click", reset);
-showOpening();
-document.getElementById("begin").addEventListener("click", showQuiz0);
-document.getElementById("reset").addEventListener("click", reset);
+// showOpening();
+// document.getElementById("begin").addEventListener("click", showQuiz0);
+// document.getElementById("reset").addEventListener("click", reset);
 showOpening();
