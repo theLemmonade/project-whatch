@@ -13,7 +13,7 @@ const title = document.getElementById("title");
 const desc = document.getElementById("desc");
 const date = document.getElementById("date");
 const rating = document.getElementById("rating");
-const reset = document.getElementById("reset");
+const search = document.getElementById("search")
 // Quiz Selectors
 var genre = String;
 var isMovie = Boolean;
@@ -201,6 +201,7 @@ function drawResult() {
   year = releaseData.substr(0, 4);
   date.textContent = year;
   rating.textContent = ratingData;
+  search.setAttribute("href", "https://reelgood.com/search?q=" + nameData)
   // Call next function
   fetchTrailerID();
 };
@@ -315,11 +316,7 @@ function youtubeTrailer() {
     });
   }
 
-
-
-
-
-// quiz results
+// Display quiz results, direct API call to movie or TV
 function showResults() {
   opening.setAttribute("style", "display:none");
   quiz0.setAttribute("style", "display:none");
@@ -337,7 +334,10 @@ function showResults() {
   console.log(movieURL);
 }
 
-
+function reset () {
+  location.reload()
+}
 
 document.getElementById("begin").addEventListener("click", showQuiz0);
+document.getElementById("reset").addEventListener("click", reset);
 showOpening();

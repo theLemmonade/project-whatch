@@ -2,20 +2,19 @@
 
 ## Description
 
-Wondering what movie to watch tonight? Take a seat, let us help you make a pick!
+Wondering what movie to whatch tonight? Take a seat, let us help you make a pick!
 
 ## Getting Started
 
+live url goes here
 
 ## Screen capture
 
 
-## Authors!
-
-
-## Version History
-
+## Authors
 
 ## Acknowledgments
-  * https://developers.themoviedb.org/3/getting-started/introduction
-  *"This product uses the TMDB API but is not endorsed or certified by TMDB."
+tmdb
+youtube
+reelgood
+bootstrap, mdn webdocs
