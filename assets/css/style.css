@@ -61,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.49);
     max-width: 1280px;
     position: relative;
-    z-index: -2;
+    z-index: 1;
 }
 
 #backdropEl {
@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 30%;
     border-radius: 10px 10px 0px 0px;
     border-bottom: 2px solid rgb(43, 43, 43);
-    z-index: -3;
+    z-index: -1;
 }
 
 
@@ -101,15 +101,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 footer {
-    text-align: center;
-    color: rgb(100, 100, 100);
     position: fixed;
-    left: 50%;
-    bottom: 20px;
-    transform: translate(-50%, -50%);
-    margin: 30 auto;
+    padding: 10px 10px 0px 10px;
+    bottom: 10px;
     width: 100%;
-    z-index: 0;
+    height: 50px;
+    text-align: center;
+    z-index: -1;
 }
 
 #logo {

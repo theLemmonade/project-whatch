@@ -48,7 +48,6 @@ function showOpening() {
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
-  footer.setAttribute("style", "display:block");
 }
 
 // Question 1: Do you want to watch a movie or a tv show?
@@ -58,7 +57,6 @@ function showQuiz0() {
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
-  footer.setAttribute("style", "display:block");
   document.getElementById("movie").addEventListener("click", answerQuiz0);
   document.getElementById("series").addEventListener("click", answerQuiz0);
 }
@@ -89,7 +87,6 @@ function showQuiz1() {
   quiz1.setAttribute("style", "display:block");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:none");
-  footer.setAttribute("style", "display:block");
   document.getElementById("action").addEventListener("click", answerQuiz1);
   document.getElementById("comedy").addEventListener("click", answerQuiz1);
   document.getElementById("scifi").addEventListener("click", answerQuiz1);
@@ -138,7 +135,6 @@ function showQuiz2() {
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:block");
   results.setAttribute("style", "display:none");
-  footer.setAttribute("style", "display:block");
   document.getElementById("80").addEventListener("click", answerQuiz2);
   document.getElementById("90").addEventListener("click", answerQuiz2);
   document.getElementById("00").addEventListener("click", answerQuiz2);
@@ -328,7 +324,6 @@ function showResults() {
   quiz1.setAttribute("style", "display:none");
   quiz2.setAttribute("style", "display:none");
   results.setAttribute("style", "display:block");
-  footer.setAttribute("style", "display:none");
   if (isMovie === true) {
     formMovieURL();
     fetchMovieResults();
