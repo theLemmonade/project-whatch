@@ -294,7 +294,7 @@ function fetchTrailerID() {
 }
 
 // YouTube IFrame Player API functions
-// Copied from the documentation website
+// Copied from the documentation website (and ammended)
 function youtubeTrailer() {
     // Load the IFrame Player API code asynchronously.
     var tag = document.createElement('script');
@@ -302,21 +302,21 @@ function youtubeTrailer() {
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }
-  // Replace the 'ytplayer' element with an <iframe> and
-  // YouTube player after the API code downloads.
-  // If there is no trailer, hide the youtube player tray
-  function onYouTubePlayerAPIReady() {
-    if (trailerKey != null) {
-      player = new YT.Player('ytplayer', {
-        height: '360',
-        width: '640',
-        videoId: trailerKey
+// Replace the 'ytplayer' element with an <iframe> and
+// YouTube player after the API code downloads.
+// If there is no trailer, hide the youtube player tray
+function onYouTubePlayerAPIReady() {
+  if (trailerKey != null) {
+    player = new YT.Player('ytplayer', {
+      height: '360',
+      width: '640',
+      videoId: trailerKey
     });
   } else {
     ytcont.setAttribute("style", "display:none")
-    console.log("hiding player")
+    console.log("hiding player");
   }
-  }
+}
 
 // Display quiz results, direct API call to movie or TV
 function showResults() {
