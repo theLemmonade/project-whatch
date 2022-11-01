@@ -19,5 +19,5 @@ https://thelemmonade.github.io/project-whatch/
 
 ## Acknowledgments
   * The Movie Database API
-  * YouTube API
+  * YouTube IFrame Player API
   * Reelgood streaming content database
