@@ -41,6 +41,7 @@ var posterSrc;
 var backdropImg;
 var showID;
 var trailerKey;
+var year;
 // YouTube API Required Variable
 var player;
 
@@ -199,10 +200,12 @@ function drawResult() {
   };
   title.textContent = nameData;
   if (descriptionData.length > 500) {
-    desc.setAttribute("style", "font-size:20px")
+    desc.setAttribute("style", "font-size:20px");
   };
   desc.textContent = descriptionData;
+  console.log(releaseData);
   year = releaseData.substr(0, 4);
+  console.log(year);
   date.textContent = year;
   rating.textContent = ratingData;
   search.setAttribute("href", "https://reelgood.com/search?q=" + nameData);
@@ -226,6 +229,7 @@ function fetchMovieResults() {
       return response.json()
     })
     .then(function (data) {
+      console.log("data", data);
       // Randomize which result is retrieved
       var randomResult = Math.floor(Math.random() * 20);
       nameData = data.results[randomResult].title;
@@ -250,12 +254,13 @@ function fetchTVResults() {
       return response.json()
     })
     .then(function (data) {
+      console.log("data", data);
       // Randomize which result is retrieved
       var randomResult = Math.floor(Math.random() * 20);
       nameData = data.results[randomResult].name;
       descriptionData = data.results[randomResult].overview;
       ratingData = data.results[randomResult].vote_average;
-      releaseData = data.results[randomResult].release_date;
+      releaseData = data.results[randomResult].first_air_date;
       posterSrc = data.results[randomResult].poster_path;
       backdropSrc = data.results[randomResult].backdrop_path;
       showID = data.results[randomResult].id;
